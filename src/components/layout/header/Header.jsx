@@ -44,7 +44,7 @@ export const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }} className={styles.navItems}>
             <nav>
             {navItems.map((item) => (
               <Button key={item} sx={{ color: '#2C1607' }}>
