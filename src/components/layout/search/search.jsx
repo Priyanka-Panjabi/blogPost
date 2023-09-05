@@ -49,7 +49,7 @@ export const SearchUtil = () => {
     const handleChange =(e)=>{
         callService("article",e.target.value)
     }
-    const magic = debouncedFunc(handleChange)
+    const optimizedChangeHandler = debouncedFunc(handleChange)
   return(
     <Search>
             <SearchIconWrapper>
@@ -58,7 +58,7 @@ export const SearchUtil = () => {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'Search blogs' }}
-              onChange={(e)=>magic(e)}
+              onChange={(e)=>optimizedChangeHandler(e)}
             />
       </Search>
   )
