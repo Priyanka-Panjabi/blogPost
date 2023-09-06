@@ -2,6 +2,7 @@ import * as React from "react";
 import {AppBar, Box, CssBaseline, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar, Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import styles from './Header.module.scss';
+import {ThemeSwitch} from '../../widgets/themeToggle'
 
 export const Header = () => {
   const { window } = Window;
@@ -9,11 +10,19 @@ export const Header = () => {
   const drawerWidth = 250;
   const navItems = ["Home", "Articles", "About Us"];
 
+  const [pageTheme, setPageTheme] = React.useState(false);
+
   const handleDrawerToggle = () => {
     setMobileView((prevState) => !prevState);
   };
+
+  const themeToggleHandler = () => {
+    //false means light, true means dark
+    setPageTheme((prevState)=> !prevState)
+  }
+
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center", }}>
       <nav>
       {navItems.map((item) => (
         <List>
@@ -24,6 +33,9 @@ export const Header = () => {
           </ListItem>
           </List>
         ))} 
+        <ThemeSwitch sx={{ m: 1 }} checked={pageTheme} inputProps={{ 'aria-label': 'Toggle Theme' }} 
+          onChange={()=>themeToggleHandler()}
+        />
       </nav>
     </Box>
   );
@@ -34,23 +46,28 @@ export const Header = () => {
     <header>
       <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar component="nav" sx={{backgroundColor: 'whitesmoke' }}>
+      <AppBar component="nav" sx={{backgroundColor: pageTheme?'#000000': 'whitesmoke' }}>
         <Toolbar >
           <IconButton
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } , color: '#2C1607' }}
+            sx={{ mr: 2, display: { sm: 'none' } , color: pageTheme? 'white':'#000000' }}
           >
             <MenuIcon />
           </IconButton>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }} className={styles.navItems}>
             <nav>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#2C1607' }}>
+              <Button key={item} sx={{ color: pageTheme? 'white':'#000000' }}>
                 {item}
               </Button>
             ))}
+            <ThemeSwitch sx={{ m: 1 }}
+              inputProps={{ 'aria-label': 'Toggle Theme' }}
+              onChange={()=>themeToggleHandler()}
+              checked={pageTheme}
+            />
             </nav>
           </Box>
         </Toolbar>
@@ -65,11 +82,13 @@ export const Header = () => {
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, color:pageTheme? 'white':'#000000', backgroundColor: pageTheme?'#000000':'white', },
           }}
+          
         >
           {drawer}
         </Drawer>
+        
     </Box>
     </header>
   )
