@@ -4,6 +4,7 @@ import styles from './Layout.module.scss';
 import { Footer } from './footer/Footer';
 import { PostCard } from '../postcard';
 import ThemeContext from '../../utility/themeContext';
+import { ArticlePage } from './article/articlePage';
 
 export default function Layout(props) {
   const { theme } = React.useContext(ThemeContext);
@@ -18,6 +19,8 @@ export default function Layout(props) {
           <PostCard/>
           {/* <PostCard/> */}
       </div>
+      {/**Temporarily placed here*/}
+      <ArticlePage />
     <Footer /> 
    </div>
   )
