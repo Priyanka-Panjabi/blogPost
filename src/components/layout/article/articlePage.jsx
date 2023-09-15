@@ -25,7 +25,9 @@ export const ArticlePage = ({data}) => {
 
     useEffect(()=>{
         // This is temporarily being called from here
-        callService('/articles').then((data) => setArticleData(data))
+        callService('/articles').then((data) => {
+            console.log("dsfSDF",data);
+            setArticleData(data)})
     },[])
 
     const darkStyles = {
@@ -39,19 +41,27 @@ export const ArticlePage = ({data}) => {
     };
 
   return(
-    <div className='article' style={theme?darkStyles:lightStyles}>
-        <h2>{articleData[0]?.title}</h2>
-        <p>Published by- {articleData[0]?.author.name} | {formatPublishedDate(new Date(articleData[0]?.published_on))}</p>
-        {
-            articleData[0]?.content.map((item)=>{
-                if(item.type==='text'){
-                    return <p key={item._id}>{parse(item.value)}</p>
-                } else if(item.type==='image') {
-                    return <img key={item._id} src={item.value} width={200} height={150} alt='img' />
-                }
-                return null
-            })
-        }
-    </div>
+    <>
+    {articleData.map((article)=>{
+        return(
+<div className='article' style={theme?darkStyles:lightStyles}>
+            <h2>{article.title}</h2>
+            <p>Published by- {article.author.name} | {formatPublishedDate(new Date(article.published_on))}</p>
+            {
+                article.content.map((item)=>{
+                    if(item.type==='text'){
+                        return <p key={item._id}>{parse(item.value)}</p>
+                    } else if(item.type==='image') {
+                        return <img key={item._id} src={item.value} width={200} height={150} alt='img' />
+                    } else if(item.type==="code"){
+                        return <div><p>{item.value}</p></div>
+                    }
+                    return null
+                })
+            }
+        </div>
+        )
+    })}
+    </>
   )
 }
