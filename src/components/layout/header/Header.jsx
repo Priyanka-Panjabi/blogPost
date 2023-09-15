@@ -4,6 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import styles from './Header.module.scss';
 import {ThemeSwitch} from '../../widgets/themeToggle'
 import ThemeContext from '../../../utility/themeContext';
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const { window } = Window;
@@ -21,11 +22,13 @@ export const Header = () => {
       <nav>
       {navItems.map((item) => (
         <List>
+          <Link to={`/${item}`}>
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
+          </Link>
           </List>
         ))} 
         <ThemeSwitch sx={{ m: 1 }} checked={theme} inputProps={{ 'aria-label': 'Toggle Theme' }} 
@@ -55,9 +58,11 @@ export const Header = () => {
           <Box sx={{ display: { xs: 'none', sm: 'block' } }} className={styles.navItems}>
             <nav>
             {navItems.map((item) => (
+              <Link to={`/${item}`}>
               <Button key={item} sx={{ color: theme? 'white':'#000000' }}>
                 {item}
               </Button>
+              </Link>
             ))}
             <ThemeSwitch sx={{ m: 1 }}
               inputProps={{ 'aria-label': 'Toggle Theme' }}

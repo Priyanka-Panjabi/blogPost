@@ -1,0 +1,16 @@
+h2::before {
+  margin: 0 15px 10px 0;
+  content: "";
+  width: 60px;
+  height: 2px;
+  background: #3498db;
+  display: inline-block;
+}
+h2::after {
+  margin: 0 15px 10px 0;
+  content: "";
+  width: 60px;
+  height: 2px;
+  background: #3498db;
+  display: inline-block;
+}

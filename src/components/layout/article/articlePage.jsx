@@ -25,10 +25,8 @@ export const ArticlePage = ({data}) => {
 
     useEffect(()=>{
         // This is temporarily being called from here
-        callService('/articles').then((data) => {
-            console.log("dsfSDF",data);
-            setArticleData(data)})
-    },[])
+        callService('/articles?articleId=64fc30fddf6555a25d21f9d1').then((data) => setArticleData(data))
+    },[]) ;
 
     const darkStyles = {
         color: 'white',
