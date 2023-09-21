@@ -11,12 +11,12 @@ function App() {
     <ThemeProvider>
     <HashRouter>
     <Routes>
-    <Route path="/" element={
+    <Route  path="/articles" element={<Articles />}/>
+    <Route path="/article/:id" element={<ArticlePage />}/>
+    <Route path="*" element={
       <Layout>
         <Main/>
       </Layout> }/>
-    <Route  path="/articles" element={<Articles />}/>
-    <Route path="/article/:id" element={<ArticlePage />}/>
    </Routes>
    </HashRouter>
    </ThemeProvider>

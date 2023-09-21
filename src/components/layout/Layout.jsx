@@ -1,32 +1,48 @@
-import React from 'react'
-import { Header } from './header'
-import styles from './Layout.module.scss';
-import { Footer } from './footer/Footer';
-import ThemeContext from '../../utility/themeContext';
-import RecentPosts from '../recentposts/RecentPosts';
-import Heading from './heading/Heading';
-import PopularPost from './popularPost/PopularPost';
+import React from "react";
+import { Header } from "./header";
+import styles from "./Layout.module.scss";
+import { Footer } from "./footer/Footer";
+import ThemeContext from "../../utility/themeContext";
+import RecentPosts from "../recentposts/RecentPosts";
+import Heading from "./heading/Heading";
+import PopularPost from "./popularPost/PopularPost";
+import Articles from "./articles/Articles";
 
 export default function Layout(props) {
   const { theme } = React.useContext(ThemeContext);
-  return ( 
-    <div className={styles.container} style={{backgroundColor:theme?"black":"#D1B3AA"}}>
+  return (
+    <div className={styles.container}>
       <Header />
       {props.children}
-      <section style={{width: '80vw'}}>
-      <div style={{ display: 'flex',
-            flexDirection: 'row',
-            marginBottom: '2rem', 
-            width: '100%'}}>
-          <PopularPost/>
+      <section
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          backgroundColor: theme ? "black" : "rgb(13 142 138 / 94%)",
+          width: "100%"
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            marginBottom: "2rem",
+            width: "80vw"
+          }}
+        >
+          <PopularPost />
           <div>
-          <Heading text=" RECENT POSTS" />
-          <RecentPosts/>
+            <Heading text=" RECENT POSTS" />
+            <RecentPosts />
           </div>
-          </div>
+        </div>
       </section>
-    <Footer /> 
-   </div>
-   
-  )
- }
+      <section style={{ backgroundColor: theme ? "#000000b5" : "#ffffffb5" }}>
+        <div>
+          <Articles />
+        </div>
+      </section>
+      <Footer />
+    </div>
+  );
+}

@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useContext } from "react";
+import ThemeContext from "../../../utility/themeContext";
 
 export default function Heading({ text }) {
-  return (
-    <h2>{text}</h2>
-  )
+  const { theme } = React.useContext(ThemeContext);
+  return <h2 style={{ color: theme ? "white" : "black" }}>{text}</h2>;
 }
