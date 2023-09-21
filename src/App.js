@@ -5,18 +5,22 @@ import Main from './components/layout/main/Main';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import { ArticlePage } from './components/layout/article/articlePage';
 import Articles from './components/layout/articles/Articles';
+import AboutUs from './components/About us/AboutUs';
+import Error404 from './components/errorPage/error404';
 
 function App() {
   return (
     <ThemeProvider>
     <HashRouter>
     <Routes>
-    <Route  path="/articles" element={<Articles />}/>
-    <Route path="/article/:id" element={<ArticlePage />}/>
-    <Route path="*" element={
+    <Route path="/" element={
       <Layout>
         <Main/>
       </Layout> }/>
+    <Route  path="/articles" element={<Articles />}/>
+    <Route path="/article/:id" element={<ArticlePage />}/>
+    <Route path="/AboutUs" element={<AboutUs />}/>
+    <Route path="*" element={<Error404/>}/>
    </Routes>
    </HashRouter>
    </ThemeProvider>
