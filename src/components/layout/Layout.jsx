@@ -37,7 +37,14 @@ export default function Layout(props) {
           </div>
         </div>
       </section>
-      <section style={{ backgroundColor: theme ? "#000000b5" : "#ffffffb5" }}>
+      <section
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          backgroundColor: theme ? "#0e0e0ebf" : "rgb(255 66 125 / 51%)",
+          width: "100%"
+        }}
+      >
         <div>
           <Articles />
         </div>
