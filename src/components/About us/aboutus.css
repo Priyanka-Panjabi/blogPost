@@ -1,0 +1,23 @@
+.parent-pen{
+    position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  background-color: rgba(0, 0, 0, 0); /* Adjust the background color as needed */
+  padding: 20px; /* Add padding as needed */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+}
+.penbody{
+    display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+.about-content{
+    background-color: black;
+    color: white;
+     width: 50vw ;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
