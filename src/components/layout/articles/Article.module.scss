@@ -1,27 +1,29 @@
-.allCardsContainer {
+.styleCardWrapper {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  height: 100vh;
+  flex-direction: row;
+  width: 33.33%;
+  padding: 30px; /* gutter width */
+}
+.styleCard {
+  box-shadow: 0 0 4px rgba(0,0,0,0.4);
+  flex: 0 0 100%;
+  height: 100%;
+  width: 100%
+}
+.allCardsContainer { 
+  display: flex; 
+  flex-flow: row wrap;
+  // flex-direction: column;
+  width: 100%;
 }
 
+@media screen and (max-width: 900px) {
+  .styleCardWrapper {
+    width: 100%; 
+  }
+}
 .searchbar{
   margin-top: 4rem;
   background-color: #0b0b0bbf;
 }
 
-@media screen and (min-width: 40em) {
-.card {
-  flex: 0 1 calc(25% - 1em);
-}
-}
-
-@media screen and (min-width: 60em) {  
- .card {
-  flex: 0 1 calc(25% - 1em);
-}
-}
-
-.cardWrapper {
-  max-width: 30% !important;
-}

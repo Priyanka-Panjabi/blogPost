@@ -4,6 +4,8 @@ import parse from "html-react-parser";
 import { callService } from "../../../utility/common";
 import ThemeContext from "../../../utility/themeContext";
 import { Header } from "../header";
+import { useDispatch, useSelector } from "react-redux";
+
 
 export const ArticlePage = ({ data }) => {
   const [articleData, setArticleData] = useState([]);
@@ -23,12 +25,23 @@ export const ArticlePage = ({ data }) => {
     return `${day} ${month} ${year}`;
   };
 
+
+  const allArticles = useSelector(({ articles }) => {
+    return articles.articles;
+  });
+
   useEffect(() => {
-    // This is temporarily being called from here
-    callService("/articles?articleId=64fc30fddf6555a25d21f9d1").then((data) =>
-      setArticleData(data)
-    );
-  }, []);
+    let path = window.location.hash.split("/");
+    let articleId = path[path.length-1];
+
+    if(allArticles.length) { // to get article if not redirect through article
+      setArticleData(allArticles.find(article => article.articleId===articleId));
+    } else {
+      callService(`/articles?articleId=${articleId}`)
+      .then((article) =>  setArticleData(article));
+    } 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
   const darkStyles = {
     color: "white",
@@ -63,7 +76,7 @@ export const ArticlePage = ({ data }) => {
                 <div>
                   <img
                     src={article.author.profileimage}
-                    alt="Author profile image"
+                    alt="Author profile"
                     height={50}
                     width={50}
                   />
