@@ -7,6 +7,7 @@ import RecentPosts from "../recentposts/RecentPosts";
 import Heading from "./heading/Heading";
 import PopularPost from "./popularPost/PopularPost";
 import Articles from "./articles/Articles";
+import { Link } from "react-router-dom";
 
 export default function Layout(props) {
   const { theme } = React.useContext(ThemeContext);
@@ -46,8 +47,12 @@ export default function Layout(props) {
         }}
       >
         <div>
-          {/* <Articles /> */}
+          <Articles count={3}/>
+          <div className={styles.loadMore}>
+            <Link to="Articles">Show all articles</Link>
+         </div>
         </div>
+       
       </section>
       <Footer />
     </div>

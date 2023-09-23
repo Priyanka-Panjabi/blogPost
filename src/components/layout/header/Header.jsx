@@ -35,7 +35,7 @@ export const Header = () => {
         {navItems.map((item) => (
           <List>
             <Link to={item === "Home" ? "/" : `/${item}`}>
-              <ListItem key={item} disablePadding>
+              <ListItem key={item} disablePadding class>
                 <ListItemButton sx={{ textAlign: "center" }}>
                   <ListItemText
                     primary={item === "AboutUs" ? "About Us" : item}
@@ -85,7 +85,7 @@ export const Header = () => {
             >
               <nav>
                 {navItems.map((item) => (
-                  <Link to={item === "Home" ? "/" : `/${item}`}>
+                  <Link to={item === "Home" ? "/" : `/${item}`} className={styles.active}>
                     <Button
                       key={item}
                       sx={{ color: theme ? "white" : "#000000" }}

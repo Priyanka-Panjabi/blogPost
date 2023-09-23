@@ -28,3 +28,11 @@ h2::after {
   background: #3498db;
   display: inline-block;
 }
+.loadMore {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0 1rem 0;
+  align-items: center;
+  background-color: aliceblue;
+  color:white;
+}

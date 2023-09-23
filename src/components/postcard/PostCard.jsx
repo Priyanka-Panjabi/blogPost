@@ -40,7 +40,7 @@ export const PostCard = ({
       {articles.map((article) => (
         <div className={styleCardWrapper}>
           <Link
-            to={`article/${article._id}`}
+            to={`/article/${article._id}`}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.link}
