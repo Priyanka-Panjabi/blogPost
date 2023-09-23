@@ -1,8 +1,10 @@
 import React from "react";
-import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 import { InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { debouncedFunc, callService } from "../../../utility/common";
+import "./search.css";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -34,6 +36,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(1)})`,
     paddingRight: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
+    cursor: "pointer",
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       width: "40ch",
@@ -45,19 +48,30 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const SearchUtil = () => {
+  const [searchStr, setSearchStr] = React.useState("");
+  const navigate = useNavigate();
   const handleChange = (e) => {
-    callService("article", e.target.value);
+    setSearchStr(e.target.value);
   };
-  const optimizedChangeHandler = debouncedFunc(handleChange);
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && searchStr) {
+      navigate("/articles", { state: { data: searchStr } });
+      return;
+    }
+  };
+
   return (
     <Search>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
+        autoFocus={true}
         placeholder="Search…"
         inputProps={{ "aria-label": "Search blogs" }}
-        onChange={(e) => optimizedChangeHandler(e)}
+        onChange={(e) => handleChange(e)}
+        onKeyDown={handleKeyPress}
       />
     </Search>
   );
