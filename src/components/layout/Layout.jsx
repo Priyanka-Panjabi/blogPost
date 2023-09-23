@@ -18,7 +18,7 @@ export default function Layout(props) {
         style={{
           display: "flex",
           justifyContent: "center",
-          backgroundColor: theme ? "black" : "rgb(13 142 138 / 94%)",
+          backgroundColor: theme ? "#1d1d1df0" : "rgb(13 142 138 / 94%)",
           width: "100%"
         }}
       >
@@ -41,7 +41,7 @@ export default function Layout(props) {
         style={{
           display: "flex",
           justifyContent: "center",
-          backgroundColor: theme ? "#0e0e0ebf" : "rgb(255 66 125 / 51%)",
+          backgroundColor: theme ? "#0e0e0ebf" : "#0e0e0ebf",
           width: "100%"
         }}
       >

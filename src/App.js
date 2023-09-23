@@ -7,6 +7,7 @@ import { ArticlePage } from './components/layout/article/articlePage';
 import Articles from './components/layout/articles/Articles';
 import AboutUs from './components/About us/AboutUs';
 import Error404 from './components/errorPage/error404';
+import { Footer } from './components/layout/footer/Footer';
 
 function App() {
   return (
@@ -17,8 +18,8 @@ function App() {
       <Layout>
         <Main/>
       </Layout> }/>
-    <Route  path="/articles" element={<Articles />}/>
-    <Route path="/article/:id" element={<ArticlePage />}/>
+    <Route  path="/articles" element={<><Articles /><Footer /></>}/>
+    <Route path="/article/:id" element={<><ArticlePage /><Footer /></>}/>
     <Route path="/AboutUs" element={<AboutUs />}/>
     <Route path="*" element={<Error404/>}/>
    </Routes>
