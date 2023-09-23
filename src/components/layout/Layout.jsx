@@ -46,7 +46,7 @@ export default function Layout(props) {
         }}
       >
         <div>
-          <Articles />
+          {/* <Articles /> */}
         </div>
       </section>
       <Footer />

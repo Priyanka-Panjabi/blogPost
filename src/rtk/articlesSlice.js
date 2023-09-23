@@ -7,7 +7,7 @@ const articleSlice = createSlice({
   },
   reducers:{
     getArticles(state,action){
-      return {...state, articles:action.payload}
+      return {...state, articles: [...state.articles, ...action.payload]}
     }
   }
 });
