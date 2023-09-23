@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { debouncedFunc, callService } from "../../../utility/common";
-import "./search.css";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
