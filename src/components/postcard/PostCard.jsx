@@ -10,6 +10,7 @@ import styles from "./PostCard.module.scss";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
+import ThemeContext from "../../utility/themeContext";
 
 export const PostCard = ({
   title,
@@ -22,6 +23,17 @@ export const PostCard = ({
     AOS.init({ duration: 1200 });
     AOS.refresh();
   }, []);
+
+  const { theme } = React.useContext(ThemeContext);
+
+  const dark = {
+    backgroundColor: "#1b1b1b",
+    color: "white"
+  };
+  const light = {
+    backgroundColor: "white",
+    color: "black"
+  };
 
   return (
     <>
@@ -42,11 +54,14 @@ export const PostCard = ({
                   alt="green iguana"
                   className={styles.cardMedia}
                 />
-                <CardContent>
+                <CardContent style={theme ? dark : light}>
                   <Typography gutterBottom variant="h5" component="div">
                     {article.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography
+                    variant="body2"
+                    color={theme ? "#bfbfbf" : "text.secondary"}
+                  >
                     {article.short_description}
                   </Typography>
                 </CardContent>
