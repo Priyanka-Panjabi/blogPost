@@ -6,6 +6,7 @@ import ThemeContext from "../../../utility/themeContext";
 import { Header } from "../header";
 import { useSelector } from "react-redux";
 import ArticlePageShimmer from "../../widgets/shimmer/articlePageShimmer";
+import CodeContainer from "../../widgets/codeContainer";
 
 export const ArticlePage = ({ data }) => {
   const [articleData, setArticleData] = useState([]);
@@ -123,7 +124,7 @@ export const ArticlePage = ({ data }) => {
                 } else if (item.type === "code") {
                   return (
                     <div>
-                      <p>{item.value}</p>
+                      <CodeContainer data={item.value} />
                     </div>
                   );
                 }
