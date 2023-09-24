@@ -2,7 +2,6 @@ import React from "react";
 import "./aboutus.css";
 import { Header } from "../layout/header";
 import { Footer } from "../layout/footer/Footer";
-import { bottom } from "@popperjs/core";
 
 const AboutUs = () => {
   const [translateXBody, setTranslateXBody] = React.useState(0);
@@ -14,7 +13,6 @@ const AboutUs = () => {
     setTranslateXBody(scrollTop);
     setTranslateXCap(scrollTop);
 
-    const container = containerRef.current;
     if (
       document.documentElement.scrollTop + window.innerHeight >=
       document.documentElement.scrollHeight
@@ -61,12 +59,14 @@ const AboutUs = () => {
                 src="https://uploads-ssl.webflow.com/5c3a6378e76e088403f168d4/5c81317bb78f130f5aaa4789_pen-1-1%403x.png"
                 height={80}
                 width={250}
+                alt="cap styling"
               />
               <img
                 style={elementStyle}
                 id="pen"
                 src="https://uploads-ssl.webflow.com/5c3a6378e76e088403f168d4/5c8057df4f71c1e19f5e15a6_pen-1-2%403x.png"
                 height={80}
+                alt="pen styling"
               />
             </div>
           </div>
