@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { Header } from "../header";
 import { PostCard } from "../../postcard";
 import { callService } from "../../../utility/common";
@@ -7,7 +7,7 @@ import { getArticles, clearArticles } from "../../../rtk/articlesSlice";
 import styles from "./Article.module.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useLocation } from "react-router-dom";
-import { SearchUtil } from "../search/search";
+// import { SearchUtil } from "../search/search";
 
 export default function Articles({count}) {
 
@@ -28,6 +28,7 @@ export default function Articles({count}) {
       // get all the articles
       getMoreArticles();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //TODO: Will be used when search bar is added. We should navigate only when search is happening on main page

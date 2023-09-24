@@ -4,7 +4,7 @@ import parse from "html-react-parser";
 import { callService } from "../../../utility/common";
 import ThemeContext from "../../../utility/themeContext";
 import { Header } from "../header";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 
 export const ArticlePage = ({ data }) => {

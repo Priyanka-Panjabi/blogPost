@@ -17,6 +17,8 @@ import styles from "./Header.module.scss";
 import { ThemeSwitch } from "../../widgets/themeToggle";
 import ThemeContext from "../../../utility/themeContext";
 import { Link } from "react-router-dom";
+import SnoopItDark from '../../../images/SnoopIt.gif';
+import SnoopItLight from '../../../images/SnoopItWhite.gif';
 
 export const Header = () => {
   const { window } = Window;
@@ -79,6 +81,7 @@ export const Header = () => {
             >
               <MenuIcon />
             </IconButton>
+            <img src={theme? SnoopItDark: SnoopItLight} className={styles.logo} alt="logo"/>
             <Box
               sx={{ display: { xs: "none", sm: "block" } }}
               className={styles.navItems}
