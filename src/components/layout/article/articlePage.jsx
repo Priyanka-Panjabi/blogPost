@@ -5,7 +5,7 @@ import { callService } from "../../../utility/common";
 import ThemeContext from "../../../utility/themeContext";
 import { Header } from "../header";
 import { useSelector } from "react-redux";
-
+import ArticlePageShimmer from "../../widgets/shimmer/articlePageShimmer";
 
 export const ArticlePage = ({ data }) => {
   const [articleData, setArticleData] = useState([]);
@@ -25,23 +25,26 @@ export const ArticlePage = ({ data }) => {
     return `${day} ${month} ${year}`;
   };
 
-
   const allArticles = useSelector(({ articles }) => {
     return articles.articles;
   });
 
   useEffect(() => {
     let path = window.location.hash.split("/");
-    let articleId = path[path.length-1];
+    let articleId = path[path.length - 1];
 
-    if(allArticles.length) { // to get article if not redirect through article
-      setArticleData(allArticles.find(article => article.articleId===articleId));
+    if (allArticles.length) {
+      // to get article if not redirect through article
+      setArticleData(
+        allArticles.find((article) => article.articleId === articleId)
+      );
     } else {
-      callService(`/articles?articleId=${articleId}`)
-      .then((article) =>  setArticleData(article));
-    } 
+      callService(`/articles?articleId=${articleId}`).then((article) =>
+        setArticleData(article)
+      );
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+  }, []);
 
   const darkStyles = {
     color: "white",
@@ -66,8 +69,8 @@ export const ArticlePage = ({ data }) => {
           backgroundColor: theme ? "rgb(50, 50, 50)" : "white"
         }}
       >
-        {articleData.map((article) => {
-          return (
+        {articleData.length ? (
+          articleData.map((article) => (
             <div className="article" style={theme ? darkStyles : lightStyles}>
               <h2 style={{ color: theme ? "white" : "black" }}>
                 {article.title}
@@ -127,8 +130,10 @@ export const ArticlePage = ({ data }) => {
                 return null;
               })}
             </div>
-          );
-        })}
+          ))
+        ) : (
+          <ArticlePageShimmer />
+        )}
       </div>
     </>
   );
