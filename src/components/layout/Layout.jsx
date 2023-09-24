@@ -8,6 +8,8 @@ import Heading from "./heading/Heading";
 import PopularPost from "./popularPost/PopularPost";
 import Articles from "./articles/Articles";
 import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function Layout(props) {
   const { theme } = React.useContext(ThemeContext);
@@ -42,17 +44,19 @@ export default function Layout(props) {
         style={{
           display: "flex",
           justifyContent: "center",
+          flexDirection: "column",
           backgroundColor: theme ? "#0e0e0ebf" : "#0e0e0ebf",
           width: "100%"
         }}
       >
-        <div>
-          <Articles count={3}/>
-          <div className={styles.loadMore}>
-            <Link to="Articles">Show all articles</Link>
-         </div>
+        <Articles count={3} />
+        <div className={styles.loadMore}>
+          <Link to="Articles">
+            <Button variant="contained" startIcon={<AddIcon />}>
+              Load more
+            </Button>
+          </Link>
         </div>
-       
       </section>
       <Footer />
     </div>
