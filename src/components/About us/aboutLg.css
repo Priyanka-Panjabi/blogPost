@@ -88,8 +88,11 @@
   background-color: #5858585b;
   color: white;
   transform: rotateY(180deg);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
 }
-/*end*/
 
 #person-details2{
 flex:1;
@@ -112,5 +115,31 @@ background-image:linear-gradient(to right,#FF416C, #ff4b2b3b);
   }
   .content-text-parent{
     width: 90vw;
+  }
+}
+
+.profile-img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 320px;
+  height: 320px;
+  background: conic-gradient(from 0deg, #ff7f00, #ff0099);
+  border: 10px solid transparent; /* Use a transparent border to create the circular shape */
+  border-radius: 50%;
+  perspective: 1000px; 
+  animation: circularRotate 800ms linear 2
+}
+
+@keyframes circularRotate {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50%{
+   /* Sets the perspective view to 1000 pixels */
+    transform: rotateY(45deg);
+  }
+  100% {
+    transform: rotateY(0deg);
   }
 }
