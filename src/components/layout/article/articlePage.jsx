@@ -7,6 +7,7 @@ import { Header } from "../header";
 import { useSelector } from "react-redux";
 import ArticlePageShimmer from "../../widgets/shimmer/articlePageShimmer";
 import CodeContainer from "../../widgets/codeContainer";
+import { Box } from "@mui/material";
 
 export const ArticlePage = ({ data }) => {
   const [articleData, setArticleData] = useState([]);
@@ -72,7 +73,18 @@ export const ArticlePage = ({ data }) => {
       >
         {articleData.length ? (
           articleData.map((article) => (
-            <div className="article" style={theme ? darkStyles : lightStyles}>
+            <Box
+              sx={{
+                width: {
+                  xs: "90vw",
+                  sm: "80vw",
+                  md: "70vw",
+                  lg: "60vw"
+                }
+              }}
+              className="article"
+              style={theme ? darkStyles : lightStyles}
+            >
               <h2 style={{ color: theme ? "white" : "black" }}>
                 {article.title}
               </h2>
@@ -130,7 +142,7 @@ export const ArticlePage = ({ data }) => {
                 }
                 return null;
               })}
-            </div>
+            </Box>
           ))
         ) : (
           <ArticlePageShimmer />

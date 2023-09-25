@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Header } from "../header";
 import { PostCard } from "../../postcard";
 import { callService } from "../../../utility/common";
@@ -11,11 +11,10 @@ import {
 import styles from "./Article.module.scss";
 import { useLocation } from "react-router-dom";
 // import { SearchUtil } from "../search/search";
-import {Pagination, Stack} from '@mui/material';
+import { Pagination, Stack } from "@mui/material";
 import { SearchUtil } from "../search/search";
 
-export default function Articles({fromPath}) {
-
+export default function Articles({ fromPath }) {
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const dispatch = useDispatch();
@@ -25,7 +24,7 @@ export default function Articles({fromPath}) {
     return articles.articles;
   });
 
-useEffect(() => {
+  useEffect(() => {
     if (location?.state?.data) {
       //TODO call search api with the string in location.state.data
       console.log("WILL CALL SEARCH API", location.state.data);
@@ -37,55 +36,65 @@ useEffect(() => {
         })
         .catch((err) => console.log("EEEEE:", err));
     } else {
-      if(!fromPath) callService(`/articles?count=true`).then((count) => setPageCount(Math.ceil(count/6)));
+      if (!fromPath)
+        callService(`/articles?count=true`).then((count) =>
+          setPageCount(Math.ceil(count / 6))
+        );
 
       getMoreArticles();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }}, []);
-
-const getMoreArticles = (page=0) => {
-  callService(`/articles?page=${page}${fromPath?"&limit=3":""}`).then((articles) => {
-    if(articles.length) {dispatch(getArticles(articles));
-      setCurrentItems(articles);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }
-  });
-}
+  }, []);
 
-return (
+  const getMoreArticles = (page = 0) => {
+    callService(`/articles?page=${page}${fromPath ? "&limit=3" : ""}`).then(
+      (articles) => {
+        if (articles.length) {
+          dispatch(getArticles(articles));
+          setCurrentItems(articles);
+        }
+      }
+    );
+  };
+
+  return (
     <div>
-    {fromPath ?<>
-      {allArticles && (
-        <div
-          className={styles.allCardsContainer}
-        >
-          <PostCard
-            articles={allArticles}
-            styleCard={styles.styleCard}
-            styleCardWrapper={styles.styleCardWrapper}
-          />
-        </div>
-      )}</>:
-    <>
-    <Header />
-    <div className={styles.main}>
-      <div className={styles.searchBar}>
-        <SearchUtil/>
-      </div>
-        <div
-          className={styles.allCardsContainer}
-        >
-          <PostCard
-            articles={currentItems}
-            styleCard={styles.styleCard}
-            styleCardWrapper={styles.styleCardWrapper}
-          />
-        </div>
-    <Stack spacing={2}>
-      <Pagination count={pageCount} color="primary" onChange={(evt, page)=>getMoreArticles(page-1)}/>
-    </Stack>
-
-    </div>
-    </>}
+      {fromPath ? (
+        <>
+          {allArticles && (
+            <div className={styles.allCardsContainer}>
+              <PostCard
+                articles={allArticles}
+                styleCard={styles.styleCard}
+                styleCardWrapper={styles.styleCardWrapper}
+              />
+            </div>
+          )}
+        </>
+      ) : (
+        <>
+          <Header />
+          <div className={styles.main}>
+            <div className={styles.searchBar}>
+              <SearchUtil />
+            </div>
+            <div className={styles.allCardsContainer}>
+              <PostCard
+                articles={currentItems}
+                styleCard={styles.styleCard}
+                styleCardWrapper={styles.styleCardWrapper}
+              />
+            </div>
+            <Stack spacing={2}>
+              <Pagination
+                count={pageCount}
+                color="primary"
+                onChange={(evt, page) => getMoreArticles(page - 1)}
+              />
+            </Stack>
+          </div>
+        </>
+      )}
     </div>
   );
 }
