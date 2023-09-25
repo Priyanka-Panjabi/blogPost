@@ -8,8 +8,6 @@ import Heading from "./heading/Heading";
 import PopularPost from "./popularPost/PopularPost";
 import Articles from "./articles/Articles";
 import { Link } from "react-router-dom";
-import Button from "@mui/material/Button";
-import AddIcon from "@mui/icons-material/Add";
 
 export default function Layout(props) {
   const { theme } = React.useContext(ThemeContext);
@@ -25,17 +23,18 @@ export default function Layout(props) {
           width: "100%"
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            marginBottom: "2rem",
-            width: "80vw"
-          }}
-        >
+        <div className={styles.section_popular_recent}>
           <PopularPost />
-          <div>
-            <Heading text=" RECENT POSTS" />
+          <div
+            style={{
+              flex: "1",
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              padding: "5px"
+            }}
+          >
+            <Heading text="RECENT POSTS" />
             <RecentPosts />
           </div>
         </div>
@@ -46,16 +45,14 @@ export default function Layout(props) {
           justifyContent: "center",
           flexDirection: "column",
           backgroundColor: theme ? "#0e0e0ebf" : "#0e0e0ebf",
-          width: "100%"
+          width: "100%",
+          alignItems: "center"
         }}
       >
+        <h2 style={{ fontSize: "2rem", color: "whitesmoke" }}>Discover more articles</h2>
         <Articles fromPath={"home"} />
         <div className={styles.loadMore}>
-          <Link to="Articles">
-            <Button variant="contained" startIcon={<AddIcon />}>
-              Load more
-            </Button>
-          </Link>
+          <Link to="Articles">Show all articles</Link>
         </div>
       </section>
       <Footer />

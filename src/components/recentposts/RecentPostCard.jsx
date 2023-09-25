@@ -29,7 +29,11 @@ export default function RecentPostCard() {
             style={{ textDecoration: "none" }}
           >
             <Card
-              sx={{ display: "flex", marginBottom: "10px" }}
+              sx={{
+                display: "flex",
+                marginBottom: "10px",
+                justifyContent: "space-between"
+              }}
               data-aos="flip-right"
             >
               <Box sx={{ display: "flex", flexDirection: "column" }}>
