@@ -49,7 +49,7 @@ export default function Layout(props) {
           width: "100%"
         }}
       >
-        <Articles count={3} />
+        <Articles fromPath={"home"} />
         <div className={styles.loadMore}>
           <Link to="Articles">
             <Button variant="contained" startIcon={<AddIcon />}>

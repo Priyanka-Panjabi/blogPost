@@ -22,8 +22,21 @@
     width: 100%; 
   }
 }
-.searchbar{
+.main{
+  padding-top: 4rem;
   margin-top: 4rem;
   background-color: #0b0b0bbf;
+}
+
+.searchBar{ 
+  width: 90%;
+  margin: auto;
+}
+
+@media screen and (min-width: 600px ) {
+  .searchBar{ 
+    width: 50%;
+    margin: auto;
+  }
 }
 

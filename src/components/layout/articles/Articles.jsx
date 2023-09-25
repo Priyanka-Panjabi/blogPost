@@ -1,53 +1,47 @@
-import React, {useState } from "react";
+import React, {useState, useEffect } from "react";
 import { Header } from "../header";
 import { PostCard } from "../../postcard";
 import { callService } from "../../../utility/common";
 import { useDispatch, useSelector } from "react-redux";
 import { getArticles, clearArticles } from "../../../rtk/articlesSlice";
 import styles from "./Article.module.scss";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { useLocation } from "react-router-dom";
 // import { SearchUtil } from "../search/search";
+import {Pagination, Stack} from '@mui/material';
+import { SearchUtil } from "../search/search";
 
-export default function Articles({count}) {
+export default function Articles({fromPath}) {
 
-  const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(0);
-
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
   const dispatch = useDispatch();
   const location = useLocation();
   const allArticles = useSelector(({ articles }) => {
     return articles.articles;
   });
 
-  React.useEffect(() => {
+useEffect(() => {
     if (location?.state?.data) {
       //TODO call search api with the string in location.state.data
       console.log("WILL CALL SEARCH API", location.state.data);
     } else {
-      // get all the articles
+      if(!fromPath) callService(`/articles?count=true`).then((count) => setPageCount(Math.ceil(count/6)));
+
       getMoreArticles();
-    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }}, []);
 
-  //TODO: Will be used when search bar is added. We should navigate only when search is happening on main page
-
-const getMoreArticles = () => {
-  let path = `/articles?page=${page}`;
-  if(count){
-    dispatch(clearArticles());
-    path= `/articles?count=${count}`;
-  }
-  callService(path).then((articles) => {
-    if(articles.length) dispatch(getArticles(articles));
-    else setHasMore(false);
+const getMoreArticles = (page=0) => {
+  callService(`/articles?page=${page}${fromPath?"&limit=3":""}`).then((articles) => {
+    if(articles.length) {dispatch(getArticles(articles));
+      setCurrentItems(articles);
+    }
   });
-  setPage(page+1*3);
 }
-  return (
+
+return (
     <div>
-    {count ?<>
+    {fromPath ?<>
       {allArticles && (
         <div
           className={styles.allCardsContainer}
@@ -61,25 +55,23 @@ const getMoreArticles = () => {
       )}</>:
     <>
     <Header />
-    <div className={styles.searchbar}>
-      <InfiniteScroll
-      dataLength={allArticles.length}
-      next={getMoreArticles}
-      hasMore={hasMore}
-      loader={<h4>Loading</h4>}
-      >
-      {allArticles && (
+    <div className={styles.main}>
+      <div className={styles.searchBar}>
+        <SearchUtil/>
+      </div>
         <div
           className={styles.allCardsContainer}
         >
           <PostCard
-            articles={allArticles}
+            articles={currentItems}
             styleCard={styles.styleCard}
             styleCardWrapper={styles.styleCardWrapper}
           />
         </div>
-      )}
-      </InfiniteScroll>
+    <Stack spacing={2}>
+      <Pagination count={pageCount} color="primary" onChange={(evt, page)=>getMoreArticles(page-1)}/>
+    </Stack>
+
     </div>
     </>}
     </div>
