@@ -46,9 +46,11 @@ export default function Layout(props) {
           justifyContent: "center",
           flexDirection: "column",
           backgroundColor: theme ? "#0e0e0ebf" : "#0e0e0ebf",
-          width: "100%"
+          width: "100%",
+          alignItems: "center"
         }}
       >
+        <h2 style={{ fontSize: "2rem", color: "whitesmoke" }}>Discover more</h2>
         <Articles count={3} />
         <div className={styles.loadMore}>
           <Link to="Articles">Show all articles</Link>
