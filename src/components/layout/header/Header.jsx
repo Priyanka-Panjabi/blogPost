@@ -17,8 +17,8 @@ import styles from "./Header.module.scss";
 import { ThemeSwitch } from "../../widgets/themeToggle";
 import ThemeContext from "../../../utility/themeContext";
 import { Link } from "react-router-dom";
-import SnoopItDark from '../../../images/SnoopIt.gif';
-import SnoopItLight from '../../../images/SnoopItWhite.gif';
+import SnoopItDark from "../../../images/SnoopIt.gif";
+import SnoopItLight from "../../../images/SnoopItWhite.gif";
 
 export const Header = () => {
   const { window } = Window;
@@ -36,10 +36,17 @@ export const Header = () => {
       <nav>
         {navItems.map((item) => (
           <List>
-            <Link to={item === "Home" ? "/" : `/${item}`}>
+            <Link
+              style={{
+                textDecoration: "none",
+                color: theme ? "white" : "#000000"
+              }}
+              to={item === "Home" ? "/" : `/${item}`}
+            >
               <ListItem key={item} disablePadding class>
                 <ListItemButton sx={{ textAlign: "center" }}>
                   <ListItemText
+                    style={{ textDecoration: "none !important" }}
                     primary={item === "AboutUs" ? "About Us" : item}
                   />
                 </ListItemButton>
@@ -81,14 +88,21 @@ export const Header = () => {
             >
               <MenuIcon />
             </IconButton>
-            <img src={theme? SnoopItDark: SnoopItLight} className={styles.logo} alt="logo"/>
+            <img
+              src={theme ? SnoopItDark : SnoopItLight}
+              className={styles.logo}
+              alt="logo"
+            />
             <Box
               sx={{ display: { xs: "none", sm: "block" } }}
               className={styles.navItems}
             >
               <nav>
                 {navItems.map((item) => (
-                  <Link to={item === "Home" ? "/" : `/${item}`} className={styles.active}>
+                  <Link
+                    to={item === "Home" ? "/" : `/${item}`}
+                    className={styles.active}
+                  >
                     <Button
                       key={item}
                       sx={{ color: theme ? "white" : "#000000" }}
