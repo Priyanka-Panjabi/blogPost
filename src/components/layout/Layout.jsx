@@ -49,10 +49,10 @@ export default function Layout(props) {
           alignItems: "center"
         }}
       >
-        <h2 style={{ fontSize: "2rem", color: "whitesmoke" }}>Discover more articles</h2>
+        <h2>Discover more articles</h2>
         <Articles fromPath={"home"} />
         <div className={styles.loadMore}>
-          <Link to="Articles">Show all articles</Link>
+          <Link to="Articles" aria-label="Read more articles" className={styles.link}>SHOW ALL ARTICLES</Link>
         </div>
       </section>
       <Footer />

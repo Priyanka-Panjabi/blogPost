@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import ThemeContext from "../../../utility/themeContext";
+import styles from "./Heading.module.scss";
 
 export default function Heading({ text }) {
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   return (
-    <h2 style={{ color: theme ? "white" : "black", fontSize: "2rem" }}>
+    <h2 className={theme ? styles.dark : styles.light}>
       {text}
     </h2>
   );

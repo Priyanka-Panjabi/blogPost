@@ -5,8 +5,7 @@ import { callService } from "../../../utility/common";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getArticles,
-  getSearchArticles,
-  clearArticles
+  getSearchArticles
 } from "../../../rtk/articlesSlice";
 import styles from "./Article.module.scss";
 import { useLocation } from "react-router-dom";
@@ -42,8 +41,8 @@ export default function Articles({ fromPath }) {
         );
 
       getMoreArticles();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getMoreArticles = (page = 0) => {
@@ -88,8 +87,10 @@ export default function Articles({ fromPath }) {
             <Stack spacing={2}>
               <Pagination
                 count={pageCount}
-                color="primary"
+                color="secondary" 
                 onChange={(evt, page) => getMoreArticles(page - 1)}
+                className={styles.paginate}
+                size="large" 
               />
             </Stack>
           </div>

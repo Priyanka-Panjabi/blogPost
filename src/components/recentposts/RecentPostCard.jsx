@@ -27,6 +27,7 @@ export default function RecentPostCard() {
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none" }}
+            aria-label= {`Article ${article.title} opens in a new window`}
           >
             <Card
               sx={{

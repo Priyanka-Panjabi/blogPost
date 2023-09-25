@@ -46,6 +46,7 @@ export const PostCard = ({
               target="_blank"
               rel="noopener noreferrer"
               className={styles.link}
+              aria-label= {`Article ${article.title} opens in a new window`}
             >
               <Card className={styleCard} data-aos="zoom-in">
                 <CardActionArea>
