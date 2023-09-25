@@ -8,7 +8,6 @@ import Heading from "./heading/Heading";
 import PopularPost from "./popularPost/PopularPost";
 import Articles from "./articles/Articles";
 import { Link } from "react-router-dom";
-import { Box } from "@mui/material";
 
 export default function Layout(props) {
   const { theme } = React.useContext(ThemeContext);
@@ -50,8 +49,8 @@ export default function Layout(props) {
           alignItems: "center"
         }}
       >
-        <h2 style={{ fontSize: "2rem", color: "whitesmoke" }}>Discover more</h2>
-        <Articles count={3} />
+        <h2 style={{ fontSize: "2rem", color: "whitesmoke" }}>Discover more articles</h2>
+        <Articles fromPath={"home"} />
         <div className={styles.loadMore}>
           <Link to="Articles">Show all articles</Link>
         </div>
