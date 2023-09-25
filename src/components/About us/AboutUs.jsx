@@ -36,7 +36,7 @@ const AboutUs = () => {
     zIndex: "1"
   };
   const elementStyleCap = {
-    transform: `translate(${-translateXCap < -450 ? -650 : -translateXCap}px)`,
+    transform: `translate(${-translateXCap < -450 ? -550 : -translateXCap}px)`,
     transition: "transform 0.3s ease-out",
     zIndex: "2"
   };
