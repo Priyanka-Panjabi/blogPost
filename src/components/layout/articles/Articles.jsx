@@ -14,7 +14,6 @@ import { Pagination, Stack } from "@mui/material";
 import { SearchUtil } from "../search/search";
 
 export default function Articles({ fromPath }) {
-  const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const dispatch = useDispatch();
   const location = useLocation();
@@ -31,15 +30,19 @@ export default function Articles({ fromPath }) {
         .then((articles) => {
           if (articles.length) {
             dispatch(getSearchArticles(articles));
-          } else alert("no result");
+          } else {
+            alert("no result");
+            getMoreArticles()
+          };
         })
-        .catch((err) => console.log("EEEEE:", err));
+        .catch((err) => console.log("EEEEE:", err)
+        );
     } else {
-      if (!fromPath)
+      if (!fromPath ){
         callService(`/articles?count=true`).then((count) =>
           setPageCount(Math.ceil(count / 6))
         );
-
+      }
       getMoreArticles();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -48,10 +51,7 @@ export default function Articles({ fromPath }) {
   const getMoreArticles = (page = 0) => {
     callService(`/articles?page=${page}${fromPath ? "&limit=3" : ""}`).then(
       (articles) => {
-        if (articles.length) {
-          dispatch(getArticles(articles));
-          setCurrentItems(articles);
-        }
+        if (articles.length)  dispatch(getArticles(articles));
       }
     );
   };
@@ -79,7 +79,7 @@ export default function Articles({ fromPath }) {
             </div>
             <div className={styles.allCardsContainer}>
               <PostCard
-                articles={currentItems}
+                articles={allArticles}
                 styleCard={styles.styleCard}
                 styleCardWrapper={styles.styleCardWrapper}
               />

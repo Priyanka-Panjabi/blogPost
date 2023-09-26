@@ -8,7 +8,7 @@ const articleSlice = createSlice({
   reducers:{
     getArticles(state,action){
       console.log("Current State: getArtivle ",state,action)
-      return {...state, articles: [...state.articles, ...action.payload]}
+      return {...state, articles: action.payload}
     },
     getSearchArticles(state,action){
       console.log("Current State: ",state,action)
