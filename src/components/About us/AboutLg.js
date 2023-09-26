@@ -4,6 +4,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Link } from "react-router-dom";
+import SnoopItDark from "../../images/logo-aboutUS.png";
 
 const AboutLg = () => {
   const [translateXBody, setTranslateXBody] = React.useState(0);
@@ -30,7 +31,7 @@ const AboutLg = () => {
 
   const elementStyle = {
     transform: `translate(${
-      translateXBody - 250 > 300 ? 600 : translateXBody - 250
+      translateXBody - 250 > 300 ? 750 : translateXBody - 250
     }px)`,
     transition: "transform 0.3s ease-out",
     zIndex: "1"
@@ -73,70 +74,20 @@ const AboutLg = () => {
         </div>
         <div className="about-content">
           <div className="content-text-parent">
-            <p>
-              TODO ADD SOME CONTENT ABOUT THIS WEBSITE. Lorem ipsum dolor sit
-              amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-              officia deserunt mollit anim id est laborum.
+            <img src={SnoopItDark} id="logo-img" alt="Snoopit logo" />
+            <p id="about-snoopit">
+              <strong>SnoopIt</strong>, is a convenient resource hub, crafted to
+              centralise the articles for convenience. We take pride in our
+              user-friendly, responsive interface with rich content. It's our
+              modest contribution to help you to deepen your knowledge and
+              furnish personal growth. Truly at our core, we embrace the notion
+              that more we share knowledge, more we grow.
+            </p>
+            <p id="about-tagline">
+              Let's collaborate on establishing a digital presence
             </p>
 
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <div className="flip-card">
-                <div className="flip-card-inner">
-                  <div className="flip-card-front">
-                    <img
-                      src="https://www.w3schools.com/howto/img_avatar.png"
-                      alt="Avatar"
-                      style={{ width: "300px", height: "300px" }}
-                    />
-                  </div>
-                  <div className="flip-card-back">
-                    <Link
-                      to="https://www.linkedin.com/in/tanmay-17886615b/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <LinkedInIcon />
-                    </Link>
-                    <Link
-                      to="https://github.com/tanmayIntelli"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <GitHubIcon />
-                    </Link>
-                    <a
-                      href="mailto:tanmaypach15@gmail.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <EmailIcon />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div id="person-details1">
-                <p className="name">Tanmay</p>
-                <p className="about">
-                  Front End Web Developer with experience in designing and
-                  developing extensive web-interfaces & mobile first websites.
-                </p>
-                <p>SDE at Oracle Cerner | 4+ YOE as a front-end developer.</p>
-              </div>
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row-reverse",
-                justifyContent: "space-between",
-                marginTop: "50px"
-              }}
-            >
               <div className="flip-card">
                 <div className="flip-card-inner">
                   <div className="flip-card-front">
@@ -171,15 +122,74 @@ const AboutLg = () => {
                   </div>
                 </div>
               </div>
-              <div id="person-details2">
+              <div id="person-details1">
                 <p className="name">Priyanka Panjabi</p>
                 <p className="about">
-                  Front End Web Developer with experience in designing and
-                  developing extensive web-interfaces & mobile first websites.
+                  Fulltime keyboard masseur. Taking pleasure in frontend
+                  development and enthusiastic about acquiring knowledge.
                 </p>
-                <p>SDE at Wipro | ex-JIO | 6+ YOE as a front-end developer.</p>
+                <p className="about">Frontend Developer @Wipro Ltd.</p>
               </div>
             </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row-reverse",
+                justifyContent: "space-between",
+                marginTop: "50px"
+              }}
+            >
+              <div className="flip-card">
+                <div className="flip-card-inner">
+                  <div className="flip-card-front">
+                    <img
+                      src="https://www.w3schools.com/howto/img_avatar.png"
+                      alt="Avatar"
+                      style={{ width: "300px", height: "300px" }}
+                    />
+                  </div>
+                  <div className="flip-card-back">
+                    <Link
+                      to="https://www.linkedin.com/in/tanmay-17886615b/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <LinkedInIcon />
+                    </Link>
+                    <Link
+                      to="https://github.com/tanmayIntelli"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <GitHubIcon />
+                    </Link>
+                    <a
+                      href="mailto:tanmaypach15@gmail.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <EmailIcon />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div id="person-details2">
+                <p className="name">Tanmay</p>
+                <p className="about">
+                  Seasoned Frontend Developer with over 4 yrs of experience.
+                  Making healtcare accessible to all @Oracle Cerner. Specialize
+                  in crafting immersive UIs and bringing creative web solutions
+                  to life.
+                </p>
+                <p className="about">SDE-2 @ Oracle Cerner</p>
+              </div>
+            </div>
+
+            <p id="about-endline">
+              We are open for collaboration and discussions. Looking forward to
+              receive a "Hello "from you
+            </p>
           </div>
         </div>
       </div>

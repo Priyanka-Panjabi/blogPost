@@ -1,6 +1,6 @@
 import React from "react";
 import "./aboutSm.css";
-
+import SnoopItDark from "../../images/logo-aboutUS.png";
 import UserCard from "./UserCard";
 
 const AboutSm = () => {
@@ -53,15 +53,17 @@ const AboutSm = () => {
         </div>
         <div className="about-content">
           <div className="content-text-parent">
-            <p>
-              TODO ADD SOME CONTENT ABOUT THIS WEBSITE. Lorem ipsum dolor sit
-              amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-              officia
+            <img src={SnoopItDark} id="logo-img" alt="Snoopit logo" />
+            <p id="about-snoopit">
+              <strong>SnoopIt</strong>, is a convenient resource hub, crafted to
+              centralise the articles for convenience. We take pride in our
+              user-friendly, responsive interface with rich content. It's our
+              modest contribution to help you to deepen your knowledge and
+              furnish personal growth. Truly at our core, we embrace the notion
+              that more we share knowledge, more we grow.
+            </p>
+            <p id="about-tagline">
+              Let's collaborate on establishing a digital presence
             </p>
 
             <UserCard />
