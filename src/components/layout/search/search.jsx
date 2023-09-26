@@ -1,9 +1,8 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
 import { InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-// import { debouncedFunc, callService } from "../../../utility/common";
+import { StringContext } from "../../../utility/StringContext";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -46,18 +45,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   }
 }));
 
-export const SearchUtil = () => {
+export const SearchUtil = ({ keydownHandler }) => {
   const [searchStr, setSearchStr] = React.useState("");
-  const navigate = useNavigate();
+  const { sharedString, updateString } = React.useContext(StringContext);
   const handleChange = (e) => {
     setSearchStr(e.target.value);
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter" && searchStr) {
-      navigate("/articles", { state: { data: searchStr } });
-      return;
-    }
+    updateString(e.target.value);
   };
 
   return (
@@ -66,11 +59,12 @@ export const SearchUtil = () => {
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
+        value={sharedString}
         autoFocus={true}
         placeholder="Search…"
         inputProps={{ "aria-label": "Search blogs" }}
         onChange={(e) => handleChange(e)}
-        onKeyDown={handleKeyPress}
+        onKeyDown={keydownHandler}
       />
     </Search>
   );

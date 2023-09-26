@@ -85,16 +85,16 @@ const AboutLg = () => {
             </p>
 
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
+              <div className="flip-card">
+                <div className="flip-card-inner">
+                  <div className="flip-card-front">
                     <img
                       src="https://www.w3schools.com/howto/img_avatar.png"
                       alt="Avatar"
                       style={{ width: "300px", height: "300px" }}
                     />
                   </div>
-                  <div class="flip-card-back">
+                  <div className="flip-card-back">
                     <Link
                       to="https://www.linkedin.com/in/tanmay-17886615b/"
                       target="_blank"
@@ -137,16 +137,16 @@ const AboutLg = () => {
                 marginTop: "50px"
               }}
             >
-              <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
+              <div className="flip-card">
+                <div className="flip-card-inner">
+                  <div className="flip-card-front">
                     <img
                       src="https://www.w3schools.com/howto/img_avatar.png"
                       alt="Avatar"
                       style={{ width: "300px", height: "300px" }}
                     />
                   </div>
-                  <div class="flip-card-back">
+                  <div className="flip-card-back">
                     <Link
                       to="https://www.linkedin.com/in/priyanka-panjabi-84496112b/"
                       target="_blank"

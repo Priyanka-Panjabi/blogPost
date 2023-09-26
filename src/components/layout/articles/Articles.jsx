@@ -1,44 +1,68 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Header } from "../header";
 import { PostCard } from "../../postcard";
 import { callService } from "../../../utility/common";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getArticles,
-  getSearchArticles
-} from "../../../rtk/articlesSlice";
+import { getArticles, getSearchArticles } from "../../../rtk/articlesSlice";
 import styles from "./Article.module.scss";
 import { useLocation } from "react-router-dom";
-// import { SearchUtil } from "../search/search";
+import { StringContext } from "../../../utility/StringContext";
 import { Pagination, Stack } from "@mui/material";
 import { SearchUtil } from "../search/search";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function Articles({ fromPath }) {
   const [pageCount, setPageCount] = useState(0);
+  const [showSnackbar, setShowSnackbar] = useState(false);
   const dispatch = useDispatch();
   const location = useLocation();
   const allArticles = useSelector(({ articles }) => {
-    console.log("ARTICLES from store: ", articles);
     return articles.articles;
   });
+  const { sharedString, updateString } = React.useContext(StringContext);
+
+  const searchApi = (searchString) => {
+    let urlToCall;
+    if (searchString) {
+      urlToCall = `/search?str=${searchString}`;
+    } else {
+      urlToCall = `/search?str=${location.state.data}`;
+    }
+    callService(urlToCall)
+      .then((articles) => {
+        if (articles.length) {
+          dispatch(getSearchArticles(articles));
+        } else {
+          setShowSnackbar(true);
+          callService(`/articles?count=true`).then((count) =>
+            setPageCount(Math.ceil(count / 6))
+          );
+          getMoreArticles();
+        }
+      })
+      .catch((err) => console.log("Error:", err));
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && e.target.value) {
+      searchApi(e.target.value);
+      return;
+    } else if (e.key === "Enter") {
+      getMoreArticles();
+    }
+  };
 
   useEffect(() => {
-    if (location?.state?.data) {
+    if (sharedString && location?.state?.data) {
       //TODO call search api with the string in location.state.data
-      console.log("WILL CALL SEARCH API", location.state.data);
-      callService(`/search?str=${location.state.data}`)
-        .then((articles) => {
-          if (articles.length) {
-            dispatch(getSearchArticles(articles));
-          } else {
-            alert("no result");
-            getMoreArticles()
-          };
-        })
-        .catch((err) => console.log("EEEEE:", err)
-        );
+      searchApi();
     } else {
-      if (!fromPath ){
+      if (!fromPath) {
         callService(`/articles?count=true`).then((count) =>
           setPageCount(Math.ceil(count / 6))
         );
@@ -51,9 +75,15 @@ export default function Articles({ fromPath }) {
   const getMoreArticles = (page = 0) => {
     callService(`/articles?page=${page}${fromPath ? "&limit=3" : ""}`).then(
       (articles) => {
-        if (articles.length)  dispatch(getArticles(articles));
+        if (articles.length) {
+          dispatch(getArticles(articles));
+        }
       }
     );
+  };
+
+  const handleClose = () => {
+    setShowSnackbar(false);
   };
 
   return (
@@ -73,9 +103,19 @@ export default function Articles({ fromPath }) {
       ) : (
         <>
           <Header />
+          <Snackbar
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            open={showSnackbar}
+            autoHideDuration={3000}
+            onClose={handleClose}
+          >
+            <Alert severity="error" sx={{ width: "100%" }}>
+              No result found!
+            </Alert>
+          </Snackbar>
           <div className={styles.main}>
             <div className={styles.searchBar}>
-              <SearchUtil />
+              <SearchUtil keydownHandler={handleKeyPress} />
             </div>
             <div className={styles.allCardsContainer}>
               <PostCard
@@ -87,10 +127,10 @@ export default function Articles({ fromPath }) {
             <Stack spacing={2}>
               <Pagination
                 count={pageCount}
-                color="secondary" 
+                color="secondary"
                 onChange={(evt, page) => getMoreArticles(page - 1)}
                 className={styles.paginate}
-                size="large" 
+                size="large"
               />
             </Stack>
           </div>

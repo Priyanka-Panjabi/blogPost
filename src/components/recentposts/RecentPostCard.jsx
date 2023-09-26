@@ -13,7 +13,6 @@ export default function RecentPostCard() {
     AOS.init({ duration: 1200 });
     AOS.refresh();
     callService("/articles?type=recent").then((article) => {
-      console.log("Article", article);
       setRecentArticles(article);
     });
   }, []);
@@ -27,7 +26,7 @@ export default function RecentPostCard() {
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none" }}
-            aria-label= {`Article ${article.title} opens in a new window`}
+            aria-label={`Article ${article.title} opens in a new window`}
           >
             <Card
               sx={{
