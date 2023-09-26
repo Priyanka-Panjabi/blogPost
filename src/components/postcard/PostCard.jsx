@@ -42,13 +42,13 @@ export const PostCard = ({
     <>
       {articles.length ? (
         articles.map((article) => (
-          <div className={styleCardWrapper}>
+          <div key={article._id} className={styleCardWrapper}>
             <Link
               to={`/article/${article._id}`}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.link}
-              aria-label= {`Article ${article.title} opens in a new window`}
+              aria-label={`Article ${article.title} opens in a new window`}
             >
               <Card className={styleCard} data-aos="zoom-in">
                 <CardActionArea>

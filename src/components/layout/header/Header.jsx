@@ -25,7 +25,11 @@ export const Header = () => {
   const { theme, toggleTheme } = React.useContext(ThemeContext);
   const [mobileView, setMobileView] = React.useState(false);
   const drawerWidth = 250;
-  const navItems = ["Home", "Articles", "AboutUs"];
+  const navItems = [
+    { id: 0, text: "Home" },
+    { id: 1, text: "Articles" },
+    { id: 2, text: "AboutUs" }
+  ];
 
   const handleDrawerToggle = () => {
     setMobileView((prevState) => !prevState);
@@ -35,19 +39,19 @@ export const Header = () => {
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <nav>
         {navItems.map((item) => (
-          <List>
+          <List key={item.id}>
             <Link
               style={{
                 textDecoration: "none",
                 color: theme ? "white" : "#000000"
               }}
-              to={item === "Home" ? "/" : `/${item}`}
+              to={item.text === "Home" ? "/" : `/${item.text}`}
             >
-              <ListItem key={item} disablePadding class>
+              <ListItem key={item.id} disablePadding>
                 <ListItemButton sx={{ textAlign: "center" }}>
                   <ListItemText
                     style={{ textDecoration: "none !important" }}
-                    primary={item === "AboutUs" ? "About Us" : item}
+                    primary={item.text === "AboutUs" ? "About Us" : item.text}
                   />
                 </ListItemButton>
               </ListItem>
@@ -88,11 +92,13 @@ export const Header = () => {
             >
               <MenuIcon />
             </IconButton>
-            <img
-              src={theme ? SnoopItDark : SnoopItLight}
-              className={styles.logo}
-              alt="logo"
-            />
+            <Link to="/">
+              <img
+                src={theme ? SnoopItDark : SnoopItLight}
+                className={styles.logo}
+                alt="logo"
+              />
+            </Link>
             <Box
               sx={{ display: { xs: "none", sm: "block" } }}
               className={styles.navItems}
@@ -100,14 +106,15 @@ export const Header = () => {
               <nav>
                 {navItems.map((item) => (
                   <Link
-                    to={item === "Home" ? "/" : `/${item}`}
+                    key={item.id}
+                    to={item.text === "Home" ? "/" : `/${item.text}`}
                     className={styles.active}
                   >
                     <Button
-                      key={item}
+                      key={item.id}
                       sx={{ color: theme ? "white" : "#000000" }}
                     >
-                      {item === "AboutUs" ? "About Us" : item}
+                      {item.text === "AboutUs" ? "About Us" : item.text}
                     </Button>
                   </Link>
                 ))}
