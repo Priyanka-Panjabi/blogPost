@@ -1,51 +1,63 @@
-.parent-pen{
-    position: fixed;
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kenia&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap");
+
+.parent-pen {
+  position: fixed;
   top: 55%;
   left: 50%;
   width: 100%;
   transform: translate(-43%, 180%); /* Center horizontally and vertically */
-  background-color: rgba(0, 0, 0, 0); /* Adjust the background color as needed */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0
+  ); /* Adjust the background color as needed */
   padding: 20px; /* Add padding as needed */
   z-index: 6;
 }
-.penbody{
+.penbody {
   display: flex;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
 }
-.about-banner{
+.about-banner {
   height: 100vh;
   width: 100%;
-  margin-top:4rem;
+  margin-top: 4rem;
   display: flex;
   justify-content: center;
 }
-.banner-img{
+.banner-img {
   overflow: hidden;
   position: relative;
-  background-image: url('../../images/tag.png');
+  background-image: url("../../images/tag.png");
   background-attachment: fixed;
   background-position: center;
-  background-repeat:repeat-y;
-  background-size:contain;
+  background-repeat: repeat-y;
+  background-size: contain;
   z-index: 5;
 
   width: 100vw;
   margin-top: 50px;
 }
-.about-content{
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    height: 150vh;
-    background-color: #202020c4;
+.about-content {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  height: 200vh;
+  background-color: #202020c4;
 }
-.content-text-parent{
+.content-text-parent {
   width: 60vw;
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* css for profile card*/
@@ -64,14 +76,15 @@
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .flip-card:hover .flip-card-inner {
   transform: rotateY(180deg);
 }
 
-.flip-card-front, .flip-card-back {
+.flip-card-front,
+.flip-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -80,7 +93,6 @@
 }
 
 .flip-card-front {
-
   color: black;
 }
 
@@ -94,31 +106,52 @@
   flex-direction: column;
 }
 
-#person-details2{
-flex:1;
-padding: 5px 10px;
-background-image:linear-gradient(to right,#FF416C, #ff4b2b3b);
-}
-#person-details1{
-  flex:1;
+#person-details1 {
+  flex: 1;
   padding: 5px 10px;
-  background-image:linear-gradient(to left,#FF416C, #ff4b2b3b);
+  font-family: "Work Sans", sans-serif;
+  font-weight: 800;
+  background-image: linear-gradient(to left, #ff416c, #ff4b2b3b);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+#person-details2 {
+  flex: 1;
+  padding: 5px 10px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 800;
+  background-image: linear-gradient(to right, #ff416c, #ff4b2b3b);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.name {
+  font-size: 20px;
+  margin: 0;
+  font-weight: bold;
+}
+.about {
+  font-size: 16px;
+  padding: 0 10px;
+}
 @media (max-width: 820px) {
   /* for md and above screens */
-  .banner-img{
+  .banner-img {
     background-repeat: no-repeat;
   }
-  .penbody{
+  .penbody {
     display: none;
   }
-  .content-text-parent{
+  .content-text-parent {
     width: 90vw;
   }
 }
 
-.profile-img{
+.profile-img {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -127,16 +160,35 @@ background-image:linear-gradient(to right,#FF416C, #ff4b2b3b);
   background: conic-gradient(from 0deg, #ff7f00, #ff0099);
   border: 10px solid transparent; /* Use a transparent border to create the circular shape */
   border-radius: 50%;
-  perspective: 1000px; 
-  animation: circularRotate 800ms linear 2
+  perspective: 1000px;
+  animation: circularRotate 800ms linear 2;
+}
+
+#about-snoopit {
+  font-family: "Courier Prime", monospace;
+  font-size: 1.5rem;
+}
+#about-tagline {
+  font-family: "Kenia", cursive;
+  font-size: 2.5rem;
+  font-style: oblique;
+}
+#about-endline {
+  font-family: "Satisfy", cursive;
+  font-size: 2.5rem;
+  font-style: oblique;
+  margin-top: 5rem;
+}
+#logo-img {
+  width: 230px;
 }
 
 @keyframes circularRotate {
   0% {
     transform: rotateY(0deg);
   }
-  50%{
-   /* Sets the perspective view to 1000 pixels */
+  50% {
+    /* Sets the perspective view to 1000 pixels */
     transform: rotateY(45deg);
   }
   100% {

@@ -1,90 +1,62 @@
-.parent-pen{
-    position: fixed;
+.parent-pen {
+  position: fixed;
   top: 55%;
   left: 50%;
   width: 100%;
   transform: translate(-43%, 180%); /* Center horizontally and vertically */
-  background-color: rgba(0, 0, 0, 0); /* Adjust the background color as needed */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0
+  ); /* Adjust the background color as needed */
   padding: 20px; /* Add padding as needed */
   z-index: 6;
 }
-.penbody{
+.penbody {
   display: flex;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
 }
-.about-banner{
+.about-banner {
   height: 100vh;
   width: 100%;
-  margin-top:4rem;
+  margin-top: 4rem;
   display: flex;
   justify-content: center;
 }
-.banner-img{
+.banner-img {
   overflow: hidden;
   position: relative;
-  background-image: url('../../images/tag.png');
+  background-image: url("../../images/tag.png");
   background-attachment: fixed;
   background-position: center;
-  background-repeat:no-repeat;
-  background-size:contain;
+  background-repeat: no-repeat;
+  background-size: contain;
   z-index: 5;
 
   width: 100vw;
   margin-top: 50px;
 }
-.about-content{
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    height: 150vh;
-    background-color: #101010c4;
-}
-.content-text-parent{
-  width: 85vw;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  padding: 5px;
-}
-
-
-.temp1{
+.about-content {
+  color: white;
   display: flex;
   flex-direction: column;
-  width: 85vw;
+  align-items: center;
+  padding: 10px;
+  height: 200vh;
+  background-color: #101010c4;
 }
-
-.temp2{
-  flex: 1;
-  background-color: green;
-  padding: 8px;
-  box-shadow: 5px 10px #888888;
+.content-text-parent {
+  width: 85vw;
+  margin-top: 5rem;
+  padding: 5px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
-.temp2-img{
-  flex: 1;
-  background-color: red;
+
+.content {
   display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#temp2-img-id{
-  width: 100%;
-}
-
-.temp2-text{
-  flex: 2;
-  background-color: blueviolet;
-}
-
-
-
-.temp3{
-  margin-top: 2rem;
-  flex: 1;
-  border: 2px solid red;
+  flex-direction: column;
 }
