@@ -19,21 +19,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: #f00;
     transition: 0.7s;
     z-index: 1;
-}
-
-.container2 .card:nth-child(1) .icon {
-    background: #e07768;
-}
-
-.container2 .card:nth-child(2) .icon {
-    background: #6eadd4;
-}
-
-.container2 .card:nth-child(3) .icon {
-    background: #4aada9;
 }
 
 
@@ -65,7 +52,6 @@ i {
 
 .container2 .card .face.face1 {
     position: relative;
-    background: #333;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,7 +60,6 @@ i {
 }
 
 .container2 .card:hover .face.face1{
-    background: #ff0057;
     transform: translateY(0px);
 }
 
@@ -125,4 +110,8 @@ i {
 a{
     text-decoration: none;
     color: white;
+}
+
+.face2{
+    border-radius: 15px;
 }

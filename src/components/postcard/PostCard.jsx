@@ -29,11 +29,13 @@ export const PostCard = ({
 
   const dark = {
     backgroundColor: "#1b1b1b",
-    color: "white"
+    color: "white",
+    height: "100%"
   };
   const light = {
     backgroundColor: "white",
-    color: "black"
+    color: "black",
+    height: "100%"
   };
 
   return (
