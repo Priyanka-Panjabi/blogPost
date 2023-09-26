@@ -16,7 +16,11 @@ function UserCard() {
               <img
                 src="https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI="
                 alt="pro f"
-                style={{ width: "100%", height: "100%" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "5px"
+                }}
               />
             </div>
           </div>
@@ -41,15 +45,27 @@ function UserCard() {
                   padding: "5px"
                 }}
               >
-                <Link to="/">
+                <Link
+                  to="https://www.linkedin.com/in/tanmay-17886615b/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <LinkedInIcon />
                 </Link>
-                <Link to="/">
+                <Link
+                  to="https://github.com/tanmayIntelli"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <GitHubIcon />
                 </Link>
-                <Link to="/">
+                <a
+                  href="mailto:tanmaypach15@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <EmailIcon />
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -63,7 +79,11 @@ function UserCard() {
               <img
                 src="https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?cs=srgb&dl=pexels-andrea-piacquadio-3763188.jpg&fm=jpg"
                 alt="pro f"
-                style={{ width: "100%", height: "100%" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "5px"
+                }}
               />
             </div>
           </div>
@@ -88,15 +108,27 @@ function UserCard() {
                   padding: "5px"
                 }}
               >
-                <Link to="/">
+                <Link
+                  to="https://www.linkedin.com/in/priyanka-panjabi-84496112b/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <LinkedInIcon />
                 </Link>
-                <Link to="/">
+                <Link
+                  to="https://github.com/Priyanka-Panjabi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <GitHubIcon />
                 </Link>
-                <Link to="/">
+                <a
+                  href="mailto:priyanka.panjabi88@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <EmailIcon />
-                </Link>
+                </a>
               </div>
             </div>
           </div>
