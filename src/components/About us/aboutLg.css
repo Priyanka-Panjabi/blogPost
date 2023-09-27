@@ -49,15 +49,8 @@
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  height: 200vh;
+
   background-color: #202020c4;
-}
-.content-text-parent {
-  width: 60vw;
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 /* css for profile card*/
@@ -145,9 +138,6 @@
   }
   .penbody {
     display: none;
-  }
-  .content-text-parent {
-    width: 90vw;
   }
 }
 

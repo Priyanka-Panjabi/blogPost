@@ -5,6 +5,8 @@ import EmailIcon from "@mui/icons-material/Email";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Link } from "react-router-dom";
 import SnoopItDark from "../../images/logo-aboutUS.png";
+import tan from "../../images/tan.jpeg";
+import pp from "../../images/pp.jpeg";
 
 const AboutLg = () => {
   const [translateXBody, setTranslateXBody] = React.useState(0);
@@ -34,19 +36,18 @@ const AboutLg = () => {
       translateXBody - 250 > 300 ? 750 : translateXBody - 250
     }px)`,
     transition: "transform 0.3s ease-out",
-    zIndex: "1",
+    zIndex: "1"
   };
   const elementStyleCap = {
     transform: `translate(${-translateXCap < -450 ? -550 : -translateXCap}px)`,
     transition: "transform 0.3s ease-out",
-    zIndex: "2",
+    zIndex: "2"
   };
   return (
     <>
       <div
         style={{
-          backgroundColor: "black",
-          overflowY: "auto",
+          backgroundColor: "black"
         }}
         ref={containerRef}
       >
@@ -92,7 +93,7 @@ const AboutLg = () => {
                 <div className="flip-card-inner">
                   <div className="flip-card-front">
                     <img
-                      src="https://www.w3schools.com/howto/img_avatar.png"
+                      src={pp}
                       alt="Avatar"
                       style={{ width: "300px", height: "300px" }}
                     />
@@ -140,14 +141,14 @@ const AboutLg = () => {
                 display: "flex",
                 flexDirection: "row-reverse",
                 justifyContent: "space-between",
-                marginTop: "50px",
+                marginTop: "50px"
               }}
             >
               <div className="flip-card">
                 <div className="flip-card-inner">
                   <div className="flip-card-front">
                     <img
-                      src="https://www.w3schools.com/howto/img_avatar.png"
+                      src={tan}
                       alt="Avatar"
                       style={{ width: "300px", height: "300px" }}
                     />

@@ -43,8 +43,7 @@ const AboutSm = () => {
     <>
       <div
         style={{
-          backgroundColor: "black",
-          overflowY: "auto"
+          backgroundColor: "black"
         }}
         ref={containerRef}
       >
@@ -65,7 +64,6 @@ const AboutSm = () => {
             <p id="about-tagline">
               Let's collaborate on establishing a digital presence
             </p>
-
             <UserCard />
           </div>
         </div>
