@@ -116,7 +116,7 @@ function UserCard() {
               <div>
                 <p className="about">
                   Seasoned Frontend Developer with over 4 yrs of experience.
-                  Making healtcare accessible to all @Oracle Cerner. Specialize
+                  Making healthcare accessible to all @Oracle Cerner. Specialize
                   in crafting immersive UIs and bringing creative web solutions
                   to life.
                 </p>

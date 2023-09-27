@@ -5,10 +5,11 @@ import { StringContext } from "../../../utility/StringContext";
 
 export const Home = () => {
   const navigate = useNavigate();
-  const { sharedString, updateString } = React.useContext(StringContext);
+  const { updateString } = React.useContext(StringContext);
 
   React.useEffect(() => {
     updateString("");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleKeyPress = (e) => {

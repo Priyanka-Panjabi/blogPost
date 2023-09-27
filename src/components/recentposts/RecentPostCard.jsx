@@ -5,6 +5,7 @@ import "aos/dist/aos.css";
 import { callService } from "../../utility/common";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
 
 export default function RecentPostCard() {
   const [recentArticle, setRecentArticles] = React.useState([]);
@@ -32,14 +33,15 @@ export default function RecentPostCard() {
               sx={{
                 display: "flex",
                 marginBottom: "10px",
-                justifyContent: "space-between"
+                justifyContent: "space-between",
               }}
               data-aos="flip-right"
             >
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <CardContent sx={{ flex: "1 0 auto" }}>
                   <Typography component="div" variant="h6">
-                    {article.title}
+                    {article.title}{" "}
+                    <BiLinkExternal style={{ fontSize: "1rem" }} />
                   </Typography>
                   <Typography
                     variant="subtitle1"
