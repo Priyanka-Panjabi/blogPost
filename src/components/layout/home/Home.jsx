@@ -20,7 +20,7 @@ export const Home = () => {
   };
   return (
     <>
-      <SearchUtil keydownHandler={handleKeyPress} />
+      <SearchUtil keydownHandler={handleKeyPress} path="home"/>
     </>
   );
 };

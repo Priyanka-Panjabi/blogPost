@@ -27,7 +27,8 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   right: 0
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
+const StyledInputBase = styled(InputBase)(({ theme, path}) => ({
+  width:"100%",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
@@ -37,15 +38,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     cursor: "pointer",
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      width: "40ch",
+      width: path?"40ch":"",
       "&:focus": {
-        width: "60ch"
+        width: path?"60ch":""
       }
     }
   }
 }));
 
-export const SearchUtil = ({ keydownHandler }) => {
+export const SearchUtil = ({ keydownHandler, path }) => {
   const [searchStr, setSearchStr] = React.useState("");
   const { sharedString, updateString } = React.useContext(StringContext);
   const handleChange = (e) => {
@@ -54,7 +55,7 @@ export const SearchUtil = ({ keydownHandler }) => {
   };
 
   return (
-    <Search>
+    <Search path={path}>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
@@ -65,6 +66,7 @@ export const SearchUtil = ({ keydownHandler }) => {
         inputProps={{ "aria-label": "Search blogs" }}
         onChange={(e) => handleChange(e)}
         onKeyDown={keydownHandler}
+        path = {path}
       />
     </Search>
   );
