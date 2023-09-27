@@ -10,7 +10,7 @@ import {
   ListItemButton,
   ListItemText,
   Toolbar,
-  Button
+  Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import styles from "./Header.module.scss";
@@ -19,39 +19,44 @@ import ThemeContext from "../../../utility/themeContext";
 import { Link } from "react-router-dom";
 import SnoopItDark from "../../../images/SnoopIt.gif";
 import SnoopItLight from "../../../images/SnoopItWhite.gif";
+import { useLocation } from "react-router-dom";
 
 export const Header = () => {
   const { window } = Window;
   const { theme, toggleTheme } = React.useContext(ThemeContext);
   const [mobileView, setMobileView] = React.useState(false);
   const drawerWidth = 250;
-  const navItems = [
-    { id: 0, text: "Home" },
-    { id: 1, text: "Articles" },
-    { id: 2, text: "AboutUs" }
-  ];
+  const navItems = ["Home", "Articles", "AboutUs"];
+  const location = useLocation();
 
   const handleDrawerToggle = () => {
     setMobileView((prevState) => !prevState);
+  };
+
+  const isActive = (item) => {
+    return location.pathname === `/${item === "Home" ? "" : item}`
+      ? styles.active
+      : "";
   };
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <nav>
         {navItems.map((item) => (
-          <List key={item.id}>
+          <List>
             <Link
               style={{
                 textDecoration: "none",
-                color: theme ? "white" : "#000000"
+                color: theme ? "white" : "#000000",
               }}
-              to={item.text === "Home" ? "/" : `/${item.text}`}
+              to={item === "Home" ? "/" : `/${item}`}
+              className={isActive(item)}
             >
-              <ListItem key={item.id} disablePadding>
+              <ListItem key={item} disablePadding class>
                 <ListItemButton sx={{ textAlign: "center" }}>
                   <ListItemText
                     style={{ textDecoration: "none !important" }}
-                    primary={item.text === "AboutUs" ? "About Us" : item.text}
+                    primary={item === "AboutUs" ? "About Us" : item}
                   />
                 </ListItemButton>
               </ListItem>
@@ -87,7 +92,7 @@ export const Header = () => {
               sx={{
                 mr: 2,
                 display: { sm: "none" },
-                color: theme ? "white" : "#000000"
+                color: theme ? "white" : "#000000",
               }}
             >
               <MenuIcon />
@@ -96,7 +101,7 @@ export const Header = () => {
               <img
                 src={theme ? SnoopItDark : SnoopItLight}
                 className={styles.logo}
-                alt="logo"
+                alt="Home Page"
               />
             </Link>
             <Box
@@ -105,16 +110,13 @@ export const Header = () => {
             >
               <nav>
                 {navItems.map((item) => (
-                  <Link
-                    key={item.id}
-                    to={item.text === "Home" ? "/" : `/${item.text}`}
-                    className={styles.active}
-                  >
+                  <Link to={item === "Home" ? "/" : `/${item}`}>
                     <Button
-                      key={item.id}
+                      key={item}
                       sx={{ color: theme ? "white" : "#000000" }}
+                      className={isActive(item)}
                     >
-                      {item.text === "AboutUs" ? "About Us" : item.text}
+                      {item === "AboutUs" ? "About Us" : item}
                     </Button>
                   </Link>
                 ))}
@@ -134,7 +136,7 @@ export const Header = () => {
           open={mobileView}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -142,8 +144,8 @@ export const Header = () => {
               boxSizing: "border-box",
               width: drawerWidth,
               color: theme ? "white" : "#000000",
-              backgroundColor: theme ? "#343434" : "white"
-            }
+              backgroundColor: theme ? "#343434" : "white",
+            },
           }}
         >
           {drawer}

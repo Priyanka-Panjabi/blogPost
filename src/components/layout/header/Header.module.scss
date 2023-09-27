@@ -6,8 +6,10 @@
   position: absolute;
   right: 0;
 }
-.active  { // revise
-  // background-color: bisque;
+.active  { 
+  text-decoration: underline !important;
+  text-underline-offset: 0.5rem !important;
+  font-weight: bold !important;
 }
 .logo {
  height: 4rem;

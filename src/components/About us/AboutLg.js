@@ -34,19 +34,19 @@ const AboutLg = () => {
       translateXBody - 250 > 300 ? 750 : translateXBody - 250
     }px)`,
     transition: "transform 0.3s ease-out",
-    zIndex: "1"
+    zIndex: "1",
   };
   const elementStyleCap = {
     transform: `translate(${-translateXCap < -450 ? -550 : -translateXCap}px)`,
     transition: "transform 0.3s ease-out",
-    zIndex: "2"
+    zIndex: "2",
   };
   return (
     <>
       <div
         style={{
           backgroundColor: "black",
-          overflowY: "auto"
+          overflowY: "auto",
         }}
         ref={containerRef}
       >
@@ -137,7 +137,7 @@ const AboutLg = () => {
                 display: "flex",
                 flexDirection: "row-reverse",
                 justifyContent: "space-between",
-                marginTop: "50px"
+                marginTop: "50px",
               }}
             >
               <div className="flip-card">
@@ -178,7 +178,7 @@ const AboutLg = () => {
                 <p className="name">Tanmay</p>
                 <p className="about">
                   Seasoned Frontend Developer with over 4 yrs of experience.
-                  Making healtcare accessible to all @Oracle Cerner. Specialize
+                  Making healthcare accessible to all @Oracle Cerner. Specialize
                   in crafting immersive UIs and bringing creative web solutions
                   to life.
                 </p>
