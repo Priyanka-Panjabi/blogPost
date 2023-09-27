@@ -21,18 +21,18 @@ h2::after {
   color: #000000;
 }
 h2 {
-   font-size: "2rem" 
+  font-size: "2rem";
 }
 
 @media screen and (max-width: 820px) {
   h2 {
-    font-size: 1.5rem 
- }
- h2::before {
-  width: 2rem;
- }
+    font-size: 1.5rem;
+  }
+  h2::before {
+    width: 1rem;
+  }
 
- h2::after {
-  width: 2rem;
- }
+  h2::after {
+    width: 1rem;
+  }
 }
