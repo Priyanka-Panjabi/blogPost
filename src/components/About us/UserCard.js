@@ -55,6 +55,7 @@ function UserCard() {
                 }}
               >
                 <Link
+                  className="social-media-link"
                   to="https://www.linkedin.com/in/priyanka-panjabi-84496112b/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -62,6 +63,7 @@ function UserCard() {
                   <LinkedInIcon />
                 </Link>
                 <Link
+                  className="social-media-link"
                   to="https://github.com/Priyanka-Panjabi"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -69,6 +71,7 @@ function UserCard() {
                   <GitHubIcon />
                 </Link>
                 <a
+                  className="social-media-link"
                   href="mailto:priyanka.panjabi88@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -129,6 +132,7 @@ function UserCard() {
                 }}
               >
                 <Link
+                  className="social-media-link"
                   to="https://www.linkedin.com/in/tanmay-17886615b/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -136,6 +140,7 @@ function UserCard() {
                   <LinkedInIcon />
                 </Link>
                 <Link
+                  className="social-media-link"
                   to="https://github.com/tanmayIntelli"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -143,6 +148,7 @@ function UserCard() {
                   <GitHubIcon />
                 </Link>
                 <a
+                  className="social-media-link"
                   href="mailto:tanmaypach15@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"

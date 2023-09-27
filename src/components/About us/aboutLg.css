@@ -183,6 +183,10 @@
   width: 230px;
 }
 
+.social-media-link {
+  color: whitesmoke;
+}
+
 @keyframes circularRotate {
   0% {
     transform: rotateY(0deg);

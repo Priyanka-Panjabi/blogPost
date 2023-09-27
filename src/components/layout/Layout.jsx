@@ -52,7 +52,13 @@ export default function Layout(props) {
         <h2>Discover more articles</h2>
         <Articles fromPath={"home"} />
         <div className={styles.loadMore}>
-          <Link to="Articles" aria-label="Read more articles" className={styles.link}>SHOW ALL ARTICLES</Link>
+          <Link
+            to="Articles"
+            aria-label="Read more articles"
+            className={styles.link}
+          >
+            Show all articles
+          </Link>
         </div>
       </section>
       <Footer />

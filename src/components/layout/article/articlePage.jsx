@@ -95,6 +95,7 @@ export const ArticlePage = ({ data }) => {
                     alt="Author profile"
                     height={50}
                     width={50}
+                    style={{ borderRadius: "50%", border: "1px solid white" }}
                   />
                 </div>
                 <div>
