@@ -11,6 +11,7 @@ import { Pagination, Stack } from "@mui/material";
 import { SearchUtil } from "../search/search";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import LinearProgress from "@mui/material/LinearProgress";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -19,6 +20,8 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export default function Articles({ fromPath }) {
   const [pageCount, setPageCount] = useState(0);
   const [showSnackbar, setShowSnackbar] = useState(false);
+  const [showProgressBar, setProgressBar] = useState(false);
+  const [shouldCallAPI, setShouldCallAPI] = useState(true);
   const dispatch = useDispatch();
   const location = useLocation();
   const allArticles = useSelector(({ articles }) => {
@@ -37,11 +40,13 @@ export default function Articles({ fromPath }) {
       .then((articles) => {
         if (articles.length) {
           dispatch(getSearchArticles(articles));
+          setProgressBar(false);
         } else {
           setShowSnackbar(true);
-          callService(`/articles?count=true`).then((count) =>
-            setPageCount(Math.ceil(count / 6))
-          );
+          callService(`/articles?count=true`).then((count) => {
+            setProgressBar(false);
+            return setPageCount(Math.ceil(count / 6));
+          });
           getMoreArticles();
         }
       })
@@ -50,10 +55,16 @@ export default function Articles({ fromPath }) {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && e.target.value) {
+      setProgressBar(true);
       searchApi(e.target.value);
+      setShouldCallAPI(true);
       return;
     } else if (e.key === "Enter") {
-      getMoreArticles();
+      if (shouldCallAPI) {
+        setProgressBar(true);
+        getMoreArticles();
+      }
+      setShouldCallAPI(false);
     }
   };
 
@@ -63,9 +74,10 @@ export default function Articles({ fromPath }) {
       searchApi();
     } else {
       if (!fromPath) {
-        callService(`/articles?count=true`).then((count) =>
-          setPageCount(Math.ceil(count / 6))
-        );
+        callService(`/articles?count=true`).then((count) => {
+          setProgressBar(false);
+          return setPageCount(Math.ceil(count / 6));
+        });
       }
       getMoreArticles();
     }
@@ -78,6 +90,7 @@ export default function Articles({ fromPath }) {
         if (articles.length) {
           dispatch(getArticles(articles));
         }
+        setProgressBar(false);
       }
     );
   };
@@ -117,6 +130,12 @@ export default function Articles({ fromPath }) {
             <div className={styles.searchBar}>
               <SearchUtil keydownHandler={handleKeyPress} />
             </div>
+            {showProgressBar && (
+              <LinearProgress
+                style={{ margin: "10px", padding: "2px 10px" }}
+                color="secondary"
+              />
+            )}
             <div className={styles.allCardsContainer}>
               <PostCard
                 articles={allArticles}
