@@ -5,14 +5,14 @@
   padding: 30px; /* gutter width */
 }
 .styleCard {
-  box-shadow: 0 0 4px rgba(0,0,0,0.4);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
   flex: 0 0 100%;
   height: 100%;
   width: 100%;
-  display:flex;
+  display: flex;
 }
-.allCardsContainer { 
-  display: flex; 
+.allCardsContainer {
+  display: flex;
   flex-flow: row wrap;
   // flex-direction: column;
   width: 100%;
@@ -20,28 +20,29 @@
 
 @media screen and (max-width: 820px) {
   .styleCardWrapper {
-    width: 100%; 
+    width: 100%;
   }
 }
 .main {
   padding-top: 4rem;
   margin-top: 4rem;
   background-color: #0b0b0bbf;
+  min-height: 100vh;
 }
 
-.searchBar { 
+.searchBar {
   width: 90%;
   margin: auto;
 }
 
-@media screen and (min-width: 600px ) {
-  .searchBar{ 
+@media screen and (min-width: 600px) {
+  .searchBar {
     width: 50%;
     margin: auto;
   }
 }
 
-.paginate { 
+.paginate {
   display: flex;
-  justify-content: center 
+  justify-content: center;
 }
