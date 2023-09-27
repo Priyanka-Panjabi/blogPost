@@ -23,6 +23,7 @@ export default function RecentPostCard() {
       {recentArticle &&
         recentArticle.map((article) => (
           <Link
+            key={article._id}
             to={`/article/${article._id}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -33,7 +34,7 @@ export default function RecentPostCard() {
               sx={{
                 display: "flex",
                 marginBottom: "10px",
-                justifyContent: "space-between",
+                justifyContent: "space-between"
               }}
               data-aos="flip-right"
             >

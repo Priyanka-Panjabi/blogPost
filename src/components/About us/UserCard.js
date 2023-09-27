@@ -4,160 +4,120 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Link } from "react-router-dom";
+import tan from "../../images/tan.jpeg";
+import pp from "../../images/pp.jpeg";
 
-// Create a functional component for the user card
 function UserCard() {
   return (
     <div className="container2">
-      <div className="card">
-        <div className="face face1">
-          <div className="content">
-            <div className="icon">
-              <img
-                src="https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?cs=srgb&dl=pexels-andrea-piacquadio-3763188.jpg&fm=jpg"
-                alt="pro f"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  borderRadius: "5px"
-                }}
-              />
-            </div>
+      <div className="profile-card-1">
+        <div className="our-team">
+          <div className="picture">
+            <img className="img-fluid" src={pp} />
           </div>
-        </div>
-        <div className="face face2">
-          <div className="content">
-            <p style={{ flex: "1" }} className="name">
-              Priyanka Panjabi
+          <div className="team-content">
+            <p className="name">Priyanka Panjabi</p>
+            <p className="about">Frontend Developer @Wipro Ltd</p>
+            <p className="title">
+              Fulltime keyboard masseur. Taking pleasure in frontend development
+              and enthusiastic about acquiring knowledge.
             </p>
-            <div
-              style={{
-                flex: "4",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-around"
-              }}
-            >
-              <div>
-                <p className="about">
-                  Fulltime keyboard masseur. Taking pleasure in frontend
-                  development and enthusiastic about acquiring knowledge.
-                </p>
-                <p className="about">Frontend Developer @Wipro Ltd.</p>
-              </div>
-              <div
-                style={{
-                  backgroundColor: "black",
-                  display: "flex",
-                  justifyContent: "space-around",
-                  marginTop: "16px",
-                  padding: "5px"
-                }}
-              >
-                <Link
-                  className="social-media-link"
-                  to="https://www.linkedin.com/in/priyanka-panjabi-84496112b/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <LinkedInIcon />
-                </Link>
-                <Link
-                  className="social-media-link"
-                  to="https://github.com/Priyanka-Panjabi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <GitHubIcon />
-                </Link>
-                <a
-                  className="social-media-link"
-                  href="mailto:priyanka.panjabi88@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <EmailIcon />
-                </a>
-              </div>
-            </div>
           </div>
+          <ul className="social">
+            <li>
+              <Link
+                className="social-media-link"
+                to="https://www.linkedin.com/in/priyanka-panjabi-84496112b/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LinkedInIcon />
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="social-media-link"
+                to="https://github.com/Priyanka-Panjabi"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GitHubIcon />
+              </Link>
+            </li>
+            <li>
+              <a
+                className="social-media-link"
+                href="mailto:priyanka.panjabi88@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <EmailIcon />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://codepen.io/collection/XdWJOQ/"
+                className="fa fa-linkedin"
+                aria-hidden="true"
+              ></a>
+            </li>
+          </ul>
         </div>
       </div>
-
-      <div className="card">
-        <div className="face face1">
-          <div className="content">
-            <div className="icon">
-              <img
-                src="https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI="
-                alt="pro f"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  borderRadius: "5px"
-                }}
-              />
-            </div>
+      <div className="profile-card-1">
+        <div className="our-team">
+          <div className="picture">
+            <img className="img-fluid" src={tan} />
           </div>
-        </div>
-        <div className="face face2">
-          <div className="content">
-            <p style={{ flex: "1" }} className="name">
-              Tanmay
+          <div className="team-content">
+            <p className="name">Tanmay</p>
+            <p className="about">SDE-2 @Oracle Cerner</p>
+            <p className="title">
+              Seasoned Frontend Developer with over 4 yrs of experience. Making
+              healthcare accessible to all @Oracle Cerner. Specialize in
+              crafting immersive UIs and bringing creative web solutions to
+              life.
             </p>
-            <div
-              style={{
-                flex: "4",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-around"
-              }}
-            >
-              <div>
-                <p className="about">
-                  Seasoned Frontend Developer with over 4 yrs of experience.
-                  Making healthcare accessible to all @Oracle Cerner. Specialize
-                  in crafting immersive UIs and bringing creative web solutions
-                  to life.
-                </p>
-                <p className="about">SDE-2 @ Oracle Cerner</p>
-              </div>
-              <div
-                style={{
-                  backgroundColor: "black",
-                  display: "flex",
-                  justifyContent: "space-around",
-                  marginTop: "16px",
-                  padding: "5px"
-                }}
-              >
-                <Link
-                  className="social-media-link"
-                  to="https://www.linkedin.com/in/tanmay-17886615b/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <LinkedInIcon />
-                </Link>
-                <Link
-                  className="social-media-link"
-                  to="https://github.com/tanmayIntelli"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <GitHubIcon />
-                </Link>
-                <a
-                  className="social-media-link"
-                  href="mailto:tanmaypach15@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <EmailIcon />
-                </a>
-              </div>
-            </div>
           </div>
+          <ul className="social">
+            <li>
+              <Link
+                className="social-media-link"
+                to="https://www.linkedin.com/in/tanmay-17886615b/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LinkedInIcon />
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="social-media-link"
+                to="https://github.com/tanmayIntelli"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GitHubIcon />
+              </Link>
+            </li>
+            <li>
+              <a
+                className="social-media-link"
+                href="mailto:tanmaypach15@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <EmailIcon />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://codepen.io/collection/XdWJOQ/"
+                className="fa fa-linkedin"
+                aria-hidden="true"
+              ></a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

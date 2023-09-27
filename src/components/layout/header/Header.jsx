@@ -10,7 +10,7 @@ import {
   ListItemButton,
   ListItemText,
   Toolbar,
-  Button,
+  Button
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import styles from "./Header.module.scss";
@@ -26,7 +26,11 @@ export const Header = () => {
   const { theme, toggleTheme } = React.useContext(ThemeContext);
   const [mobileView, setMobileView] = React.useState(false);
   const drawerWidth = 250;
-  const navItems = ["Home", "Articles", "AboutUs"];
+  const navItems = [
+    { id: 1, text: "Home" },
+    { id: 2, text: "Articles" },
+    { id: 3, text: "AboutUs" }
+  ];
   const location = useLocation();
 
   const handleDrawerToggle = () => {
@@ -43,20 +47,20 @@ export const Header = () => {
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <nav>
         {navItems.map((item) => (
-          <List>
+          <List key={item.id}>
             <Link
               style={{
                 textDecoration: "none",
-                color: theme ? "white" : "#000000",
+                color: theme ? "white" : "#000000"
               }}
-              to={item === "Home" ? "/" : `/${item}`}
-              className={isActive(item)}
+              to={item.text === "Home" ? "/" : `/${item.text}`}
+              className={isActive(item.text)}
             >
-              <ListItem key={item} disablePadding class>
+              <ListItem key={item.text} disablePadding>
                 <ListItemButton sx={{ textAlign: "center" }}>
                   <ListItemText
                     style={{ textDecoration: "none !important" }}
-                    primary={item === "AboutUs" ? "About Us" : item}
+                    primary={item.text === "AboutUs" ? "About Us" : item.text}
                   />
                 </ListItemButton>
               </ListItem>
@@ -92,7 +96,7 @@ export const Header = () => {
               sx={{
                 mr: 2,
                 display: { sm: "none" },
-                color: theme ? "white" : "#000000",
+                color: theme ? "white" : "#000000"
               }}
             >
               <MenuIcon />
@@ -110,13 +114,15 @@ export const Header = () => {
             >
               <nav>
                 {navItems.map((item) => (
-                  <Link to={item === "Home" ? "/" : `/${item}`}>
+                  <Link
+                    key={item.id}
+                    to={item.text === "Home" ? "/" : `/${item.text}`}
+                  >
                     <Button
-                      key={item}
                       sx={{ color: theme ? "white" : "#000000" }}
-                      className={isActive(item)}
+                      className={isActive(item.text)}
                     >
-                      {item === "AboutUs" ? "About Us" : item}
+                      {item.text === "AboutUs" ? "About Us" : item.text}
                     </Button>
                   </Link>
                 ))}
@@ -136,7 +142,7 @@ export const Header = () => {
           open={mobileView}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true,
+            keepMounted: true
           }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -144,8 +150,8 @@ export const Header = () => {
               boxSizing: "border-box",
               width: drawerWidth,
               color: theme ? "white" : "#000000",
-              backgroundColor: theme ? "#343434" : "white",
-            },
+              backgroundColor: theme ? "#343434" : "white"
+            }
           }}
         >
           {drawer}

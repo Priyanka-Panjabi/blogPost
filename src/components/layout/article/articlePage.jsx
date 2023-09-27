@@ -74,6 +74,7 @@ export const ArticlePage = ({ data }) => {
         {articleData.length ? (
           articleData.map((article) => (
             <Box
+              key={article._id}
               sx={{
                 width: {
                   xs: "90vw",
@@ -125,7 +126,7 @@ export const ArticlePage = ({ data }) => {
                   return <p key={item._id}>{parse(item.value)}</p>;
                 } else if (item.type === "image") {
                   return (
-                    <center>
+                    <center key={item._id}>
                       <img
                         key={item._id}
                         src={item.value}
@@ -136,7 +137,7 @@ export const ArticlePage = ({ data }) => {
                   );
                 } else if (item.type === "code") {
                   return (
-                    <div>
+                    <div key={item._id}>
                       <CodeContainer data={item.value} />
                     </div>
                   );
