@@ -9,7 +9,7 @@ import ArticlePageShimmer from "../../widgets/shimmer/articlePageShimmer";
 import CodeContainer from "../../widgets/codeContainer";
 import { Box } from "@mui/material";
 
-export const ArticlePage = ({ data }) => {
+export default function ArticlePage({ data }) {
   const [articleData, setArticleData] = useState([]);
   const { theme } = React.useContext(ThemeContext);
 
@@ -52,13 +52,13 @@ export const ArticlePage = ({ data }) => {
     color: "white",
     border: "2px solid rgb(36,36,36)",
     backgroundColor: "rgb(36,36,36)",
-    padding: "0 30px"
+    padding: "0 30px",
   };
   const lightStyles = {
     color: "black",
     border: "2px solid #b8b8b8",
     backgroundColor: "rgb(240 240 240)",
-    padding: "0 30px"
+    padding: "0 30px",
   };
   return (
     <>
@@ -68,7 +68,7 @@ export const ArticlePage = ({ data }) => {
           display: "flex",
           justifyContent: "center",
           marginTop: "7vh",
-          backgroundColor: theme ? "rgb(50, 50, 50)" : "white"
+          backgroundColor: theme ? "rgb(50, 50, 50)" : "white",
         }}
       >
         {articleData.length ? (
@@ -80,8 +80,8 @@ export const ArticlePage = ({ data }) => {
                   xs: "90vw",
                   sm: "80vw",
                   md: "70vw",
-                  lg: "60vw"
-                }
+                  lg: "60vw",
+                },
               }}
               className="article"
               style={theme ? darkStyles : lightStyles}
@@ -104,7 +104,7 @@ export const ArticlePage = ({ data }) => {
                     style={{
                       margin: "0px",
                       paddingLeft: "5px",
-                      fontWeight: "bold"
+                      fontWeight: "bold",
                     }}
                   >
                     {article.author.name}
@@ -113,7 +113,7 @@ export const ArticlePage = ({ data }) => {
                     style={{
                       margin: "0px",
                       paddingLeft: "5px",
-                      fontSize: "0.7rem"
+                      fontSize: "0.7rem",
                     }}
                   >
                     {formatPublishedDate(new Date(article.published_on))}
@@ -152,4 +152,4 @@ export const ArticlePage = ({ data }) => {
       </div>
     </>
   );
-};
+}
