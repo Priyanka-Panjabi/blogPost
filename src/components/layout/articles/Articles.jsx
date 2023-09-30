@@ -12,6 +12,7 @@ import { SearchUtil } from "../search/search";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import LinearProgress from "@mui/material/LinearProgress";
+import ArticleError from "./ArticleError";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -23,13 +24,14 @@ export default function Articles({ fromPath }) {
   const [showProgressBar, setProgressBar] = useState(false);
   const [shouldCallAPI, setShouldCallAPI] = useState(true);
   const [currPage, setCurrPage] = React.useState(0);
-  
+  const [showError, setShowError] = useState(false);
+
   const dispatch = useDispatch();
   const location = useLocation();
   const allArticles = useSelector(({ articles }) => {
     return articles.articles;
   });
-  const { sharedString, updateString } = React.useContext(StringContext);
+  const { sharedString } = useContext(StringContext);
 
   const searchApi = (searchString) => {
     let urlToCall;
@@ -40,21 +42,28 @@ export default function Articles({ fromPath }) {
     }
     callService(urlToCall)
       .then((articles) => {
+        setShowError(false);
         if (articles.length) {
           dispatch(getSearchArticles(articles));
           setPageCount(Math.ceil(articles.length / 6));
           setProgressBar(false);
         } else {
           setShowSnackbar(true);
-          callService(`/articles?count=true`).then((count) => {
-            setProgressBar(false);
-            return setPageCount(Math.ceil(count / 6));
-          });
+          callService(`/articles?count=true`)
+            .then((count) => {
+              setShowError(false);
+              setProgressBar(false);
+              return setPageCount(Math.ceil(count / 6));
+            })
+            .catch(() => setShowError(true));
           getMoreArticles();
         }
         setCurrPage(1);
       })
-      .catch((err) => console.log("Error:", err));
+      .catch((err) => {
+        setShowError(true);
+        console.log("Error:", err);
+      });
   };
 
   const handleKeyPress = (e) => {
@@ -67,11 +76,16 @@ export default function Articles({ fromPath }) {
       if (shouldCallAPI) {
         setProgressBar(true);
         getMoreArticles();
-        callService(`/articles?count=true`).then((count) => {
-          setProgressBar(false);
-          setCurrPage(0+1);
-          return setPageCount(Math.ceil(count / 6));
-        });
+        callService(`/articles?count=true`)
+          .then((count) => {
+            setShowError(false);
+            setProgressBar(false);
+            setCurrPage(0 + 1);
+            return setPageCount(Math.ceil(count / 6));
+          })
+          .catch(() => {
+            setShowError(true);
+          });
       }
       setShouldCallAPI(false);
     }
@@ -83,10 +97,15 @@ export default function Articles({ fromPath }) {
       searchApi();
     } else {
       if (!fromPath) {
-        callService(`/articles?count=true`).then((count) => {
-          setProgressBar(false);
-          return setPageCount(Math.ceil(count / 6));
-        });
+        callService(`/articles?count=true`)
+          .then((count) => {
+            setShowError(false);
+            setProgressBar(false);
+            return setPageCount(Math.ceil(count / 6));
+          })
+          .catch(() => {
+            setShowError(true);
+          });
       }
       getMoreArticles();
     }
@@ -94,15 +113,16 @@ export default function Articles({ fromPath }) {
   }, []);
 
   const getMoreArticles = (page = 0) => {
-    callService(`/articles?page=${page}${fromPath ? "&limit=3" : ""}`).then(
-      (articles) => {
+    callService(`/articles?page=${page}${fromPath ? "&limit=3" : ""}`)
+      .then((articles) => {
+        setShowError(false);
         if (articles.length) {
           dispatch(getArticles(articles));
         }
         setProgressBar(false);
-      }
-    );
-    setCurrPage(page+1)
+      })
+      .catch(() => setShowError(true));
+    setCurrPage(page + 1);
   };
 
   const handleClose = () => {
@@ -115,6 +135,7 @@ export default function Articles({ fromPath }) {
         <>
           {allArticles && (
             <div className={styles.allCardsContainer}>
+              {console.log("Dfsdfdfdsfsdfdsf")}
               <PostCard
                 articles={allArticles}
                 styleCard={styles.styleCard}
@@ -126,44 +147,51 @@ export default function Articles({ fromPath }) {
       ) : (
         <>
           <Header />
-          <Snackbar
-            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-            open={showSnackbar}
-            autoHideDuration={3000}
-            onClose={handleClose}
-          >
-            <Alert severity="error" sx={{ width: "100%" }}>
-              No result found!
-            </Alert>
-          </Snackbar>
-          <div className={styles.main}>
-            <div className={styles.searchBar}>
-              <SearchUtil keydownHandler={handleKeyPress} />
-            </div>
-            {showProgressBar && (
-              <LinearProgress
-                style={{ margin: "10px", padding: "2px 10px" }}
-                color="secondary"
-              />
-            )}
-            <div className={styles.allCardsContainer}>
-              <PostCard
-                articles={allArticles}
-                styleCard={styles.styleCard}
-                styleCardWrapper={styles.styleCardWrapper}
-              />
-            </div>
-            <Stack spacing={2}>
-              <Pagination
-                count={pageCount}
-                color="secondary"
-                onChange={(evt, page) => getMoreArticles(page - 1)}
-                className={styles.paginate}
-                size="large"
-                page={currPage}
-              />
-            </Stack>
-          </div>
+          {showError ? (
+            <ArticleError />
+          ) : (
+            <>
+              <Snackbar
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                open={showSnackbar}
+                autoHideDuration={3000}
+                onClose={handleClose}
+              >
+                <Alert severity="error" sx={{ width: "100%" }}>
+                  No result found!
+                </Alert>
+              </Snackbar>
+              <div className={styles.main}>
+                <div className={styles.searchBar}>
+                  <SearchUtil keydownHandler={handleKeyPress} />
+                </div>
+                {showProgressBar && (
+                  <LinearProgress
+                    style={{ margin: "10px", padding: "2px 10px" }}
+                    color="secondary"
+                  />
+                )}
+                <div className={styles.allCardsContainer}>
+                  {console.log("dfdsf", allArticles)}
+                  <PostCard
+                    articles={allArticles}
+                    styleCard={styles.styleCard}
+                    styleCardWrapper={styles.styleCardWrapper}
+                  />
+                </div>
+                <Stack spacing={2}>
+                  <Pagination
+                    count={pageCount}
+                    color="secondary"
+                    onChange={(evt, page) => getMoreArticles(page - 1)}
+                    className={styles.paginate}
+                    size="large"
+                    page={currPage}
+                  />
+                </Stack>
+              </div>
+            </>
+          )}
         </>
       )}
     </div>
