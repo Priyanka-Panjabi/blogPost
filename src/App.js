@@ -1,16 +1,18 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import Layout from "./components/layout/Layout";
 import ThemeProvider from "./utility/themeContextProvider";
 import { StringProvider } from "./utility/StringContext";
 import Main from "./components/layout/main/Main";
 import { HashRouter, Route, Routes } from "react-router-dom";
-import { ArticlePage } from "./components/layout/article/articlePage";
-import Articles from "./components/layout/articles/Articles";
-import AboutUs from "./components/About us/AboutUs";
-import Error404 from "./components/errorPage/error404";
-import { Footer } from "./components/layout/footer/Footer";
+import Footer from "./components/layout/footer/Footer";
 
 function App() {
+  const ArticlePage = lazy(() =>
+    import("./components/layout/article/articlePage")
+  );
+  const Articles = lazy(() => import("./components/layout/articles/Articles"));
+  const AboutUs = lazy(() => import("./components/About us/AboutUs"));
+  const Error404 = lazy(() => import("./components/errorPage/error404"));
   return (
     <ThemeProvider>
       <StringProvider>
@@ -28,8 +30,10 @@ function App() {
               path="/articles"
               element={
                 <>
-                  <Articles />
-                  <Footer />
+                  <Suspense fallback={<div>Loading please wait...</div>}>
+                    <Articles />
+                    <Footer />
+                  </Suspense>
                 </>
               }
             />
@@ -37,13 +41,29 @@ function App() {
               path="/article/:id"
               element={
                 <>
-                  <ArticlePage />
-                  <Footer />
+                  <Suspense fallback={<div>Loading please wait...</div>}>
+                    <ArticlePage />
+                    <Footer />
+                  </Suspense>
                 </>
               }
             />
-            <Route path="/AboutUs" element={<AboutUs />} />
-            <Route path="*" element={<Error404 />} />
+            <Route
+              path="/AboutUs"
+              element={
+                <Suspense fallback={<div>Loading please wait...</div>}>
+                  <AboutUs />
+                </Suspense>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <Suspense fallback={<div>Loading please wait...</div>}>
+                  <Error404 />
+                </Suspense>
+              }
+            />
           </Routes>
         </HashRouter>
       </StringProvider>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Header } from "../layout/header";
-import { Footer } from "../layout/footer/Footer";
+import Footer from "../layout/footer/Footer";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import AboutLg from "./AboutLg";

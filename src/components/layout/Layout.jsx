@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from "./header";
 import styles from "./Layout.module.scss";
-import { Footer } from "./footer/Footer";
+import Footer from "./footer/Footer";
 import ThemeContext from "../../utility/themeContext";
 import RecentPosts from "../recentposts/RecentPosts";
 import Heading from "./heading/Heading";
