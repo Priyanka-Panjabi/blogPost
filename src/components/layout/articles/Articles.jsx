@@ -22,6 +22,8 @@ export default function Articles({ fromPath }) {
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [showProgressBar, setProgressBar] = useState(false);
   const [shouldCallAPI, setShouldCallAPI] = useState(true);
+  const [currPage, setCurrPage] = React.useState(0);
+  
   const dispatch = useDispatch();
   const location = useLocation();
   const allArticles = useSelector(({ articles }) => {
@@ -40,6 +42,7 @@ export default function Articles({ fromPath }) {
       .then((articles) => {
         if (articles.length) {
           dispatch(getSearchArticles(articles));
+          setPageCount(Math.ceil(articles.length / 6));
           setProgressBar(false);
         } else {
           setShowSnackbar(true);
@@ -49,6 +52,7 @@ export default function Articles({ fromPath }) {
           });
           getMoreArticles();
         }
+        setCurrPage(1);
       })
       .catch((err) => console.log("Error:", err));
   };
@@ -63,6 +67,11 @@ export default function Articles({ fromPath }) {
       if (shouldCallAPI) {
         setProgressBar(true);
         getMoreArticles();
+        callService(`/articles?count=true`).then((count) => {
+          setProgressBar(false);
+          setCurrPage(0+1);
+          return setPageCount(Math.ceil(count / 6));
+        });
       }
       setShouldCallAPI(false);
     }
@@ -93,6 +102,7 @@ export default function Articles({ fromPath }) {
         setProgressBar(false);
       }
     );
+    setCurrPage(page+1)
   };
 
   const handleClose = () => {
@@ -150,6 +160,7 @@ export default function Articles({ fromPath }) {
                 onChange={(evt, page) => getMoreArticles(page - 1)}
                 className={styles.paginate}
                 size="large"
+                page={currPage}
               />
             </Stack>
           </div>

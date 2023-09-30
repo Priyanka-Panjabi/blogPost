@@ -17,7 +17,7 @@ export const debouncedFunc = (fn, delay = 300) => {
  */
 export const callService = async (url, data) => {
   const patternData = /^[a-zA-Z0-9, \-_]*$/;
-  const patternUrl = /^[A-Za-z0-9{}=&?/\-_]*$/;
+  const patternUrl = /^[A-Za-z0-9{} =&?/\-_]*$/;
   
   url = url?.trim();
 

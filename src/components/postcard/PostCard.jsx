@@ -22,7 +22,7 @@ export const PostCard = ({
   articles = [],
 }) => {
   React.useEffect(() => {
-    AOS.init({ duration: 1200 });
+    AOS.init({ duration: 600 });
     AOS.refresh();
   }, []);
 

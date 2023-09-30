@@ -11,7 +11,7 @@ export default function RecentPostCard() {
   const [recentArticle, setRecentArticles] = React.useState([]);
 
   React.useEffect(() => {
-    AOS.init({ duration: 1200 });
+    AOS.init({ duration: 600 });
     AOS.refresh();
     callService("/articles?type=recent").then((article) => {
       setRecentArticles(article);
